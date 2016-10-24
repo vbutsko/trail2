@@ -18,6 +18,11 @@
 	</c:when>
 </c:choose>
 </a>
+<!-- make product unavailable if user external and product internal only -->
+<c:if test="${product.internalOnly and !user.internal}">
+	<c:set var="buttonType">button</c:set>
+	<spring:theme code="text.addToCart.unavailable" var="addToCartText"/>
+</c:if>
 <div class="cart clearfix">
 	<c:url value="/cart/add" var="addToCartUrl"/>
 	<ycommerce:testId code="searchPage_addToCart_button_${product.code}">
