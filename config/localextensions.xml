@@ -21,5 +21,7 @@
     <extension name="merchandiseinitialdata"/>
     <extension name="merchandisecockpits"/>
     <extension name="merchandisecommerceservices"/>
+    <extension name="randomimageaddon"/>
+    <extension name="merchandisecheckoutaddon" />
   </extensions>
 </hybrisconfig>

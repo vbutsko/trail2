@@ -536,3 +536,19 @@ INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;c
 
 INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='multiStepCheckoutSummaryPage'];contentSlot(uid,$contentCV)[unique=true]
 ;;Side-CheckoutSummary;SideContent;;SideContent-CheckoutSummary
+
+###### Hybrids BTG Banner
+INSERT_UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;urlLink
+;;HybridsBanner;Hybrids Banner;HybridsBanner;
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+;;SideContent-CheckoutSummary;Side Slot for checkoutSummaryPages;true;HybridsBanner
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='multiStepCheckoutSummaryPage'];contentSlot(uid,$contentCV)[unique=true]
+;;Side-CheckoutSummary;SideContent;;SideContent-CheckoutSummary
+
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpg'];altText
+;;Merch_450x290_HybridsBanner_EN_02.jpg;$siteResource/images/banners/site/Merch_450x290_HybridsBanner_EN_02.jpg;;"Not a hybrid yet?"
+
+UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];$picture[lang=en]
+;;HybridsBanner;Merch_450x290_HybridsBanner_EN_02.jpg

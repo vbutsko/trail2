@@ -1,0 +1,7 @@
+# ImpEx for Importing Prices groups into Merchandise Store
+
+INSERT_UPDATE UserPriceGroup;code[unique=true];
+;hybridsPriceGroup;
+
+UPDATE Usergroup;uid[unique=true];userPriceGroup(code)
+;hybrids;hybridsPriceGroupd

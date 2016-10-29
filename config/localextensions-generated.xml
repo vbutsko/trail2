@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Generated via ant extensionsxml - please be aware that this file get overwritten each time!
+
+Parameters:
+ n/a
+
+-->
+<hybrisconfig xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:noNamespaceSchemaLocation='resources/schemas/extensions.xsd'>
+
+	<extensions>
+		<!-- 
+		     Please note that all extensions in platform/ext/* have been omitted 
+		     because they're automatically loaded. Please use <extensions autoload='false'> 
+		     in case you want to configure them explicitly. 
+		  -->
+		<extension dir='${HYBRIS_BIN_DIR}/ext-platform-optional/ldap'/>
+		<extension dir='${HYBRIS_BIN_DIR}/ext-platform-optional/virtualjdbc'/>
+		<extension dir='${HYBRIS_BIN_DIR}/ext-platform-optional/springintegrationlibs'/>
+		<extension dir='${HYBRIS_BIN_DIR}/ext-platform-optional/hmc'/>
+		<extension dir='${HYBRIS_BIN_DIR}/ext-commerce/voucher'/>
+		<extension dir='${HYBRIS_BIN_DIR}/ext-platform-optional/platformhmc'/>
+		<extension dir='${HYBRIS_BIN_DIR}/ext-commerce/promotions'/>
+		<extension dir='${HYBRIS_BIN_DIR}/ext-commerce/basecommerce'/>
+		<extension dir='${HYBRIS_BIN_DIR}/ext-commerce/payment'/>
+		<extension dir='${HYBRIS_BIN_DIR}/ext-commerce/customerreview'/>
+		<extension dir='${HYBRIS_BIN_DIR}/ext-cockpit/cockpit'/>
+		<extension dir='${HYBRIS_BIN_DIR}/ext-cockpit/admincockpit'/>
+		<extension dir='${HYBRIS_BIN_DIR}/ext-cockpit/reportcockpit'/>
+		<extension dir='${HYBRIS_BIN_DIR}/ext-commerce/solrfacetsearch'/>
+		<extension dir='${HYBRIS_BIN_DIR}/ext-commerce/solrfacetsearchhmc'/>
+		<extension dir='${HYBRIS_BIN_DIR}/ext-commerce/ticketsystem'/>
+		<extension dir='${HYBRIS_BIN_DIR}/ext-content/cms2'/>
+		<extension dir='${HYBRIS_BIN_DIR}/ext-content/cms2lib'/>
+		<extension dir='${HYBRIS_BIN_DIR}/ext-commerce/commerceservices'/>
+		<extension dir='${HYBRIS_BIN_DIR}/ext-commerce/commercewebservicescommons'/>
+		<extension dir='${HYBRIS_BIN_DIR}/ext-channel/cscockpit'/>
+		<extension dir='${HYBRIS_BIN_DIR}/ext-commerce/commercefacades'/>
+		<extension dir='${HYBRIS_BIN_DIR}/ext-commerce/commercesearch'/>
+		<extension dir='${HYBRIS_BIN_DIR}/ext-commerce/btg'/>
+		<extension dir='${HYBRIS_BIN_DIR}/ext-accelerator/acceleratorservices'/>
+		<extension dir='${HYBRIS_BIN_DIR}/ext-content/productcockpit'/>
+		<extension dir='${HYBRIS_BIN_DIR}/ext-accelerator/acceleratorcms'/>
+		<extension dir='${HYBRIS_BIN_DIR}/ext-accelerator/acceleratorfacades'/>
+		<extension dir='${HYBRIS_BIN_DIR}/ext-accelerator/acceleratorstorefrontcommons'/>
+		<extension dir='${HYBRIS_BIN_DIR}/ext-addon/addonsupport'/>
+		<extension dir='${HYBRIS_BIN_DIR}/ext-content/cmscockpit'/>
+		<extension dir='${HYBRIS_BIN_DIR}/ext-commerce/commercesearchhmc'/>
+		<extension dir='${HYBRIS_BIN_DIR}/custom/merchandisecommerceservices'/>
+		<extension dir='${HYBRIS_BIN_DIR}/custom/merchandise/merchandisecockpits'/>
+		<extension dir='${HYBRIS_BIN_DIR}/custom/randomimageaddon'/>
+		<extension dir='${HYBRIS_BIN_DIR}/custom/merchandise/merchandisefulfilmentprocess'/>
+		<extension dir='${HYBRIS_BIN_DIR}/custom/merchandise/merchandisecore'/>
+		<extension dir='${HYBRIS_BIN_DIR}/custom/merchandise/merchandiseinitialdata'/>
+		<extension dir='${HYBRIS_BIN_DIR}/custom/merchandise/merchandisefacades'/>
+		<extension dir='${HYBRIS_BIN_DIR}/ext-addon/acceleratorwebservicesaddon'/>
+		<extension dir='${HYBRIS_BIN_DIR}/ext-content/liveeditaddon'/>
+		<extension dir='${HYBRIS_BIN_DIR}/custom/merchandise/merchandisestorefront'/>
+		<extension dir='${HYBRIS_BIN_DIR}/ext-data/apparelstore'/>
+		<extension dir='${HYBRIS_BIN_DIR}/ext-data/electronicsstore'/>
+		<extension dir='${HYBRIS_BIN_DIR}/ext-template/ycommercewebservices'/>
+		<extension dir='${HYBRIS_BIN_DIR}/ext-template/ycommercewebserviceshmc'/>
+		<extension dir='${HYBRIS_BIN_DIR}/ext-template/yaddon'/>
+		<extension dir='${HYBRIS_BIN_DIR}/ext-commerce/solrserver'/>
+		<extension dir='${HYBRIS_BIN_DIR}/ext-backoffice/backoffice'/>
+		<extension dir='${HYBRIS_BIN_DIR}/ext-platform-backoffice/platformbackoffice'/>
+		<extension dir='${HYBRIS_BIN_DIR}/ext-backoffice/voucherbackoffice'/>
+		<extension dir='${HYBRIS_BIN_DIR}/ext-backoffice/solrfacetsearchbackoffice'/>
+		<extension dir='${HYBRIS_BIN_DIR}/ext-backoffice/promotionsbackoffice'/>
+		<extension dir='${HYBRIS_BIN_DIR}/ext-backoffice/basecommercebackoffice'/>
+		<extension dir='${HYBRIS_BIN_DIR}/ext-backoffice/commerceservicesbackoffice'/>
+		<extension dir='${HYBRIS_BIN_DIR}/ext-backoffice/commercesearchbackoffice'/>
+		<extension dir='${HYBRIS_BIN_DIR}/ext-cockpit/mcc'/>
+	</extensions>
+
+</hybrisconfig>
