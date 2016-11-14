@@ -23,5 +23,6 @@
     <extension name="merchandisecommerceservices"/>
     <extension name="randomimageaddon"/>
     <extension name="merchandisecheckoutaddon" />
+    <extension name="merchandiseloyaltysystem" />
   </extensions>
 </hybrisconfig>

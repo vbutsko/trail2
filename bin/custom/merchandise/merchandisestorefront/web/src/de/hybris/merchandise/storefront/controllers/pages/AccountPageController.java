@@ -13,6 +13,8 @@
  */
 package de.hybris.merchandise.storefront.controllers.pages;
 
+import de.hybris.merchandise.facades.order.OrderCancelFacade;
+import de.hybris.merchandise.facades.order.data.OrderCancelResultData;
 import de.hybris.platform.acceleratorstorefrontcommons.annotations.RequireHardLogIn;
 import de.hybris.platform.acceleratorstorefrontcommons.breadcrumb.Breadcrumb;
 import de.hybris.platform.acceleratorstorefrontcommons.breadcrumb.ResourceBreadcrumbBuilder;
@@ -95,6 +97,7 @@ public class AccountPageController extends AbstractSearchPageController
 	private static final String REDIRECT_TO_UPDATE_PROFILE = REDIRECT_PREFIX + "/my-account/update-profile";
 	private static final String REDIRECT_TO_PASSWORD_UPDATE_PAGE = REDIRECT_PREFIX + "/my-account/update-password";
 	private static final String REDIRECT_TO_ORDER_HISTORY_PAGE = REDIRECT_PREFIX + "/my-account/orders";
+	private static final String REDIRECT_TO_ORDERS = REDIRECT_PREFIX + "/my-account/orders";
 
 	/**
 	 * We use this suffix pattern because of an issue with Spring 3.1 where a Uri value is incorrectly extracted if it
@@ -117,6 +120,9 @@ public class AccountPageController extends AbstractSearchPageController
 	private static final String ORDER_DETAIL_CMS_PAGE = "order";
 
 	private static final Logger LOG = Logger.getLogger(AccountPageController.class);
+
+	@Resource(name = "orderCancelFacade")
+	private OrderCancelFacade orderCancelFacade;
 
 	@Resource(name = "orderFacade")
 	private OrderFacade orderFacade;
@@ -212,6 +218,15 @@ public class AccountPageController extends AbstractSearchPageController
 		return countryDataMap;
 	}
 
+	@RequestMapping(value = "/order/cancel/{orderCode}", method = RequestMethod.POST)
+	public String orderCancel(@PathVariable("orderCode") final String orderCode, final RedirectAttributes redirectAttributes)
+			throws CMSItemNotFoundException
+	{
+		final OrderData orderDetails = orderFacade.getOrderDetailsForCode(orderCode);
+		final OrderCancelResultData cancelResult = orderCancelFacade.cancelOrder(orderDetails);
+		redirectAttributes.addFlashAttribute("orderCancelResult", cancelResult);
+		return REDIRECT_TO_ORDERS;
+	}
 
 	@RequestMapping(value = "/addressform", method = RequestMethod.GET)
 	public String getCountryAddressForm(@RequestParam("addressCode") final String addressCode,

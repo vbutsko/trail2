@@ -1,7 +1,7 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at Oct 28, 2016 1:21:07 PM                     ---
+ * --- Generated at Nov 11, 2016 11:21:58 AM                    ---
  * ----------------------------------------------------------------
  *  
  * [y] hybris Platform
@@ -23,6 +23,7 @@ import de.hybris.merchandise.core.jalo.ApparelSizeVariantProduct;
 import de.hybris.merchandise.core.jalo.ApparelStyleVariantProduct;
 import de.hybris.merchandise.core.jalo.BTGCustomerInternalFlagOperand;
 import de.hybris.merchandise.core.jalo.ElectronicsColorVariantProduct;
+import de.hybris.merchandise.core.jalo.actions.CancelOrderAction;
 import de.hybris.platform.jalo.GenericItem;
 import de.hybris.platform.jalo.Item;
 import de.hybris.platform.jalo.Item.AttributeMode;
@@ -167,6 +168,32 @@ public abstract class GeneratedMerchandiseCoreManager extends Extension
 	public BTGCustomerInternalFlagOperand createBTGCustomerInternalFlagOperand(final Map attributeValues)
 	{
 		return createBTGCustomerInternalFlagOperand( getSession().getSessionContext(), attributeValues );
+	}
+	
+	public CancelOrderAction createCancelOrderAction(final SessionContext ctx, final Map attributeValues)
+	{
+		try
+		{
+			ComposedType type = getTenant().getJaloConnection().getTypeManager().getComposedType( MerchandiseCoreConstants.TC.CANCELORDERACTION );
+			return (CancelOrderAction)type.newInstance( ctx, attributeValues );
+		}
+		catch( JaloGenericCreationException e)
+		{
+			final Throwable cause = e.getCause();
+			throw (cause instanceof RuntimeException ?
+			(RuntimeException)cause
+			:
+			new JaloSystemException( cause, cause.getMessage(), e.getErrorCode() ) );
+		}
+		catch( JaloBusinessException e )
+		{
+			throw new JaloSystemException( e ,"error creating CancelOrderAction : "+e.getMessage(), 0 );
+		}
+	}
+	
+	public CancelOrderAction createCancelOrderAction(final Map attributeValues)
+	{
+		return createCancelOrderAction( getSession().getSessionContext(), attributeValues );
 	}
 	
 	public ElectronicsColorVariantProduct createElectronicsColorVariantProduct(final SessionContext ctx, final Map attributeValues)

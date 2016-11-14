@@ -379,7 +379,7 @@ INSERT_UPDATE JspIncludeComponent;$contentCV[unique=true];uid[unique=true];name;
 ;;AccountOrderDetailsTotalsComponent;Account Order Details Order Totals Component;accountOrderDetailOrderTotals.jsp;;AccountOrderDetailsTotalsComponent
 ;;AccountOrderDetailsShippingComponent;Account Order Details Shipping Info Component;accountOrderDetailShippingInfo.jsp;;AccountOrderDetailsShippingComponent
 ;;AccountOrderDetailsItemsComponent;Account Order Details Items Info Component;accountOrderDetailItems.jsp;;AccountOrderDetailsItemsComponent
-;;AccountOrderHistoryComponent;Account History Component;accountOrderHistoryPage.jsp;ViewOrderAction;AccountOrderHistoryComponent
+;;AccountOrderHistoryComponent;Account History Component;accountOrderHistoryPage.jsp;ViewOrderAction,CancelOrderAction;AccountOrderHistoryComponent
 ;;AccountProfileComponent;Account Profile Component;accountProfilePage.jsp;;AccountProfileComponent
 ;;AccountAddressBookComponent;Account Address Book Component;accountAddressBookPage.jsp;;AccountAddressBookComponent
 ;;AccountAddEditAddressComponent;Account Add Edit Address Component;accountEditAddressPage.jsp;;AccountAddEditAddressComponent
@@ -552,3 +552,7 @@ INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];@media[translator=
 
 UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];$picture[lang=en]
 ;;HybridsBanner;Merch_450x290_HybridsBanner_EN_02.jpg
+
+# CMS Cancel Order Action
+INSERT_UPDATE CancelOrderAction;$contentCV[unique=true];uid[unique=true];url;name;restrictions(uid,$contentCV);&actionRef
+;;CancelOrderAction;/my-account/order/cancel/{orderCode};Cancel Order Action;ActionRestriction;CancelOrderAction

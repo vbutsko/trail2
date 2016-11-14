@@ -1,7 +1,7 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at Oct 28, 2016 1:21:07 PM                     ---
+ * --- Generated at Nov 11, 2016 11:21:58 AM                    ---
  * ----------------------------------------------------------------
  *  
  * [y] hybris Platform
@@ -18,9 +18,15 @@
 package de.hybris.merchandise.jalo;
 
 import de.hybris.merchandise.constants.MerchandisecommerceservicesConstants;
+import de.hybris.merchandise.jalo.ProductQuantityThresholdFreeGiftPromotion;
 import de.hybris.platform.jalo.Item;
 import de.hybris.platform.jalo.Item.AttributeMode;
+import de.hybris.platform.jalo.JaloBusinessException;
+import de.hybris.platform.jalo.JaloSystemException;
+import de.hybris.platform.jalo.SessionContext;
 import de.hybris.platform.jalo.extension.Extension;
+import de.hybris.platform.jalo.type.ComposedType;
+import de.hybris.platform.jalo.type.JaloGenericCreationException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -46,6 +52,32 @@ public abstract class GeneratedMerchandisecommerceservicesManager extends Extens
 			ret.putAll(attr);
 		}
 		return ret;
+	}
+	
+	public ProductQuantityThresholdFreeGiftPromotion createProductQuantityThresholdFreeGiftPromotion(final SessionContext ctx, final Map attributeValues)
+	{
+		try
+		{
+			ComposedType type = getTenant().getJaloConnection().getTypeManager().getComposedType( MerchandisecommerceservicesConstants.TC.PRODUCTQUANTITYTHRESHOLDFREEGIFTPROMOTION );
+			return (ProductQuantityThresholdFreeGiftPromotion)type.newInstance( ctx, attributeValues );
+		}
+		catch( JaloGenericCreationException e)
+		{
+			final Throwable cause = e.getCause();
+			throw (cause instanceof RuntimeException ?
+			(RuntimeException)cause
+			:
+			new JaloSystemException( cause, cause.getMessage(), e.getErrorCode() ) );
+		}
+		catch( JaloBusinessException e )
+		{
+			throw new JaloSystemException( e ,"error creating ProductQuantityThresholdFreeGiftPromotion : "+e.getMessage(), 0 );
+		}
+	}
+	
+	public ProductQuantityThresholdFreeGiftPromotion createProductQuantityThresholdFreeGiftPromotion(final Map attributeValues)
+	{
+		return createProductQuantityThresholdFreeGiftPromotion( getSession().getSessionContext(), attributeValues );
 	}
 	
 	@Override

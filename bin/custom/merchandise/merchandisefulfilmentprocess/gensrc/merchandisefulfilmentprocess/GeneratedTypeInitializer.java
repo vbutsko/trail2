@@ -131,6 +131,15 @@ public class GeneratedTypeInitializer extends AbstractTypeInitializer
 		// performCreateObjects
 	
 	
+		createEnumerationValues(
+			"OrderStatus",
+			true,
+			Arrays.asList( new String[] {
+			
+				"WAITING_FOR_IMMEDIATE_CANCEL"
+			} )
+		);
+	
 				{
 				Map customPropsMap = new HashMap();
 				
@@ -147,6 +156,12 @@ public class GeneratedTypeInitializer extends AbstractTypeInitializer
 		
 			single_setAttributeProperties_ConsignmentProcess_warehouseConsignmentState();
 		
+				changeMetaType(
+					"OrderStatus",
+					null,
+					null
+				);
+			
 	}
 
 

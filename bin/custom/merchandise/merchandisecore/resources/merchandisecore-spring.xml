@@ -470,4 +470,7 @@
 		<property name="pointOfServiceService" ref="pointOfServiceService" />
 	</bean>
 
+	<!-- Spring Integration -->
+	<import resource="classpath:/merchandisecore/integration/hot-folder-store-hybris-spring.xml"/>
+
 </beans>

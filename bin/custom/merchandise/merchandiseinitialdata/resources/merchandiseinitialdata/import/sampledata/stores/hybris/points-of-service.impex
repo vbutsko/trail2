@@ -18,13 +18,7 @@ INSERT_UPDATE WeekdayOpeningDay;openingSchedule(code)[unique=true];dayOfWeek(cod
 
 INSERT_UPDATE SpecialOpeningDay;openingSchedule(code)[unique=true];date[unique=true,dateformat=dd.MM.yyyy];closed;openingTime[dateformat=hh:mm];closingTime[dateformat=hh:mm]
 
-INSERT_UPDATE Address;&addrID;streetname;streetnumber;postalcode[unique=true];town[unique=true];country(isocode);region(isocode);phone1;owner(PointOfService.name)[unique=true]
-
 INSERT_UPDATE StoreLocatorFeature;code[unique=true]
-
-INSERT_UPDATE PointOfService;name[unique=true];type(code);address(&addrID);latitude;longitude;geocodeTimestamp[dateformat=dd-MM-yyyy];$storeImage;openingSchedule(code);basestore(uid)[default=$storeUid];features(code)
-
-UPDATE PointOfService;name[unique=true];features(code);
 
 INSERT_UPDATE PoS2WarehouseRel;source(name)[unique=true];target(code)[unique=true]
 
@@ -35,3 +29,5 @@ INSERT_UPDATE PointOfService;name[unique=true];type(code);address(&addrID);latit
 INSERT_UPDATE Address;&addrID;streetname;streetnumber;postalcode[unique=true];town[unique=true];country(isocode);region(isocode);phone1;owner(PointOfService.name)[unique=true]
 ;addr1001;Zygmunta Starego;11;44-100;Gliwice;PL;;;hybris Gliwice;
 ;addr1002;Nymphenburger Str;86;80636;Munchen;DE;;;hybris Munchen;
+
+UPDATE PointOfService;name[unique=true];features(code);

@@ -142,5 +142,15 @@
 			</itemtype>
 		</typegroup>
 
+		<!-- Cancellable flag -->
+		<typegroup name="CMS Actions">
+			<itemtype code="CancelOrderAction"
+					  jaloclass="de.hybris.merchandise.core.jalo.actions.CancelOrderAction"
+					  extends="SimpleCMSAction" autocreate="true" generate="true">
+			</itemtype>
+		</typegroup>
+
+
+
 	</itemtypes>
 </items>

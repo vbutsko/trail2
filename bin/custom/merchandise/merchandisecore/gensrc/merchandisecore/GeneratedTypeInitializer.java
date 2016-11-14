@@ -96,6 +96,16 @@ public class GeneratedTypeInitializer extends AbstractTypeInitializer
 			false
 		);
 	
+		createItemType(
+			"CancelOrderAction",
+			"SimpleCMSAction",
+			de.hybris.merchandise.core.jalo.actions.CancelOrderAction.class,
+			null,
+			false,
+			null,
+			false
+		);
+	
 		createEnumerationType(
 			"SwatchColorEnum",
 			null
@@ -381,6 +391,19 @@ public class GeneratedTypeInitializer extends AbstractTypeInitializer
 				
 				setItemTypeProperties(
 					"BTGCustomerInternalFlagOperand",
+					false,
+					true,
+					true,
+					null,
+					customPropsMap
+				);
+				}
+			
+				{
+				Map customPropsMap = new HashMap();
+				
+				setItemTypeProperties(
+					"CancelOrderAction",
 					false,
 					true,
 					true,

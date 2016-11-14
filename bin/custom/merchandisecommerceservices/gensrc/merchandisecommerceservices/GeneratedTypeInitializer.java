@@ -46,6 +46,16 @@ public class GeneratedTypeInitializer extends AbstractTypeInitializer
 		// performCreateTypes
 	
 	
+		createItemType(
+			"ProductQuantityThresholdFreeGiftPromotion",
+			"ProductPromotion",
+			de.hybris.merchandise.jalo.ProductQuantityThresholdFreeGiftPromotion.class,
+			null,
+			false,
+			null,
+			false
+		);
+	
 	}
 
 	/**
@@ -59,9 +69,135 @@ public class GeneratedTypeInitializer extends AbstractTypeInitializer
 
 	
 	
+				single_createattr_ProductQuantityThresholdFreeGiftPromotion_giftProduct();
+			
+				single_createattr_ProductQuantityThresholdFreeGiftPromotion_qualifyingCount();
+			
+				single_createattr_ProductQuantityThresholdFreeGiftPromotion_messageFired();
+			
+				single_createattr_ProductQuantityThresholdFreeGiftPromotion_messageCouldHaveFired();
+			
 
 	}
 
+	
+	public void single_createattr_ProductQuantityThresholdFreeGiftPromotion_giftProduct() throws JaloBusinessException
+	{
+		
+						Map sqlColumnDefinitions = null;
+					
+				createPropertyAttribute(
+					"ProductQuantityThresholdFreeGiftPromotion", 
+					"giftProduct",  
+					null,
+					"Product",
+					de.hybris.platform.jalo.type.AttributeDescriptor.READ_FLAG|de.hybris.platform.jalo.type.AttributeDescriptor.WRITE_FLAG|de.hybris.platform.jalo.type.AttributeDescriptor.OPTIONAL_FLAG|de.hybris.platform.jalo.type.AttributeDescriptor.REMOVE_FLAG|de.hybris.platform.jalo.type.AttributeDescriptor.SEARCH_FLAG,
+					null,
+					sqlColumnDefinitions
+				);
+			
+	}
+	
+	public void single_createattr_ProductQuantityThresholdFreeGiftPromotion_qualifyingCount() throws JaloBusinessException
+	{
+		
+						Map sqlColumnDefinitions = null;
+					
+				createPropertyAttribute(
+					"ProductQuantityThresholdFreeGiftPromotion", 
+					"qualifyingCount",  
+					null,
+					"java.lang.Integer",
+					de.hybris.platform.jalo.type.AttributeDescriptor.READ_FLAG|de.hybris.platform.jalo.type.AttributeDescriptor.WRITE_FLAG|de.hybris.platform.jalo.type.AttributeDescriptor.OPTIONAL_FLAG|de.hybris.platform.jalo.type.AttributeDescriptor.REMOVE_FLAG|de.hybris.platform.jalo.type.AttributeDescriptor.SEARCH_FLAG,
+					null,
+					sqlColumnDefinitions
+				);
+			
+	}
+	
+	public void single_createattr_ProductQuantityThresholdFreeGiftPromotion_messageFired() throws JaloBusinessException
+	{
+		
+						Map sqlColumnDefinitions = new HashMap();
+						
+							sqlColumnDefinitions.put(
+								"oracle",
+								"varchar2(4000)"
+							);
+						
+							sqlColumnDefinitions.put(
+								"mysql",
+								"text"
+							);
+						
+							sqlColumnDefinitions.put(
+								"sqlserver",
+								"nvarchar(max)"
+							);
+						
+							sqlColumnDefinitions.put(
+								"hsqldb",
+								"LONGVARCHAR"
+							);
+						
+							sqlColumnDefinitions.put(
+								de.hybris.platform.persistence.property.PersistenceManager.NO_DATABASE,
+								"varchar"
+							);
+						
+				createPropertyAttribute(
+					"ProductQuantityThresholdFreeGiftPromotion", 
+					"messageFired",  
+					null,
+					"localized:java.lang.String",
+					de.hybris.platform.jalo.type.AttributeDescriptor.READ_FLAG|de.hybris.platform.jalo.type.AttributeDescriptor.WRITE_FLAG|de.hybris.platform.jalo.type.AttributeDescriptor.OPTIONAL_FLAG|de.hybris.platform.jalo.type.AttributeDescriptor.REMOVE_FLAG|de.hybris.platform.jalo.type.AttributeDescriptor.SEARCH_FLAG,
+					null,
+					sqlColumnDefinitions
+				);
+			
+	}
+	
+	public void single_createattr_ProductQuantityThresholdFreeGiftPromotion_messageCouldHaveFired() throws JaloBusinessException
+	{
+		
+						Map sqlColumnDefinitions = new HashMap();
+						
+							sqlColumnDefinitions.put(
+								"oracle",
+								"varchar2(4000)"
+							);
+						
+							sqlColumnDefinitions.put(
+								"mysql",
+								"text"
+							);
+						
+							sqlColumnDefinitions.put(
+								"sqlserver",
+								"nvarchar(max)"
+							);
+						
+							sqlColumnDefinitions.put(
+								"hsqldb",
+								"LONGVARCHAR"
+							);
+						
+							sqlColumnDefinitions.put(
+								de.hybris.platform.persistence.property.PersistenceManager.NO_DATABASE,
+								"varchar"
+							);
+						
+				createPropertyAttribute(
+					"ProductQuantityThresholdFreeGiftPromotion", 
+					"messageCouldHaveFired",  
+					null,
+					"localized:java.lang.String",
+					de.hybris.platform.jalo.type.AttributeDescriptor.READ_FLAG|de.hybris.platform.jalo.type.AttributeDescriptor.WRITE_FLAG|de.hybris.platform.jalo.type.AttributeDescriptor.OPTIONAL_FLAG|de.hybris.platform.jalo.type.AttributeDescriptor.REMOVE_FLAG|de.hybris.platform.jalo.type.AttributeDescriptor.SEARCH_FLAG,
+					null,
+					sqlColumnDefinitions
+				);
+			
+	}
 	
 
 
@@ -74,10 +210,119 @@ public class GeneratedTypeInitializer extends AbstractTypeInitializer
 		// performCreateObjects
 	
 	
+				{
+				Map customPropsMap = new HashMap();
+				
+				setItemTypeProperties(
+					"ProductQuantityThresholdFreeGiftPromotion",
+					false,
+					true,
+					true,
+					null,
+					customPropsMap
+				);
+				}
+			
+			single_setAttributeProperties_ProductQuantityThresholdFreeGiftPromotion_giftProduct();
+		
+			single_setAttributeProperties_ProductQuantityThresholdFreeGiftPromotion_qualifyingCount();
+		
+			single_setAttributeProperties_ProductQuantityThresholdFreeGiftPromotion_messageFired();
+		
+			single_setAttributeProperties_ProductQuantityThresholdFreeGiftPromotion_messageCouldHaveFired();
+		
 	}
 
 
 		
+						public void single_setAttributeProperties_ProductQuantityThresholdFreeGiftPromotion_giftProduct() throws JaloBusinessException
+						{
+							
+							
+							
+							Map customPropsMap = new HashMap();
+							
+							setAttributeProperties(
+								"ProductQuantityThresholdFreeGiftPromotion", 
+								"giftProduct",
+								false, 
+								null,
+								null,
+								null,
+								true,
+								true,
+								null,
+								customPropsMap,
+								null
+							);
+						}
+					
+						public void single_setAttributeProperties_ProductQuantityThresholdFreeGiftPromotion_qualifyingCount() throws JaloBusinessException
+						{
+							
+							
+							
+							Map customPropsMap = new HashMap();
+							
+							setAttributeProperties(
+								"ProductQuantityThresholdFreeGiftPromotion", 
+								"qualifyingCount",
+								false, 
+								Integer.valueOf(3),
+								"Integer.valueOf(3)",
+								null,
+								true,
+								true,
+								null,
+								customPropsMap,
+								null
+							);
+						}
+					
+						public void single_setAttributeProperties_ProductQuantityThresholdFreeGiftPromotion_messageFired() throws JaloBusinessException
+						{
+							
+							
+							
+							Map customPropsMap = new HashMap();
+							
+							setAttributeProperties(
+								"ProductQuantityThresholdFreeGiftPromotion", 
+								"messageFired",
+								false, 
+								null,
+								null,
+								null,
+								true,
+								true,
+								null,
+								customPropsMap,
+								null
+							);
+						}
+					
+						public void single_setAttributeProperties_ProductQuantityThresholdFreeGiftPromotion_messageCouldHaveFired() throws JaloBusinessException
+						{
+							
+							
+							
+							Map customPropsMap = new HashMap();
+							
+							setAttributeProperties(
+								"ProductQuantityThresholdFreeGiftPromotion", 
+								"messageCouldHaveFired",
+								false, 
+								null,
+								null,
+								null,
+								true,
+								true,
+								null,
+								customPropsMap,
+								null
+							);
+						}
+					
 }
 
 	
