@@ -11,7 +11,7 @@
  * 
  *  
  */
-package de.hybris.merchandise.constants;
+package de.hybris.merchandise.loyaltysystem.constants;
 
 /**
  * Global class for all Merchandiseloyaltysystem constants. You can add global constants for your extension into this class.

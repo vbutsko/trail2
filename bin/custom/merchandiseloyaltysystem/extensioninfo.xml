@@ -18,11 +18,11 @@
                
       <!-- you should add all required extensions to this list, except platform extensions which are automatically required -->         
       <!-- <requires-extension name="cms"/> -->         
-      
+        <requires-extension name="acceleratorfacades"/>
 
-      <coremodule generated="true" manager="de.hybris.merchandise.jalo.MerchandiseloyaltysystemManager" packageroot="de.hybris.merchandise"/>
+      <coremodule generated="true" manager="de.hybris.merchandise.loyaltysystem.jalo.MerchandiseloyaltysystemManager" packageroot="de.hybris.merchandise.loyaltysystem"/>
 					
-	
+	  <hmcmodule extensionclassname="de.hybris.merchandise.loyaltysystem.hmc.LoyaltySystemHMCExtension"/>
 
    </extension>
       

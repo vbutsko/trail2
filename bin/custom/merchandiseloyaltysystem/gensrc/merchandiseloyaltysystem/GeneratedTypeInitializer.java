@@ -46,6 +46,21 @@ public class GeneratedTypeInitializer extends AbstractTypeInitializer
 		// performCreateTypes
 	
 	
+		createItemType(
+			"LoyaltyPointsConfiguration",
+			"GenericItem",
+			de.hybris.merchandise.loyaltysystem.jalo.LoyaltyPointsConfiguration.class,
+			"de.hybris.platform.persistence.merchandiseloyaltysystem_LoyaltyPointsConfiguration",
+			false,
+			null,
+			false
+		);
+	
+		createEnumerationType(
+			"LoyaltyPointsConfigurationType",
+			null
+		);
+	
 	}
 
 	/**
@@ -59,9 +74,104 @@ public class GeneratedTypeInitializer extends AbstractTypeInitializer
 
 	
 	
+				single_createattr_Customer_loyaltyPoints();
+			
+				single_createattr_LoyaltyPointsConfiguration_code();
+			
+				single_createattr_LoyaltyPointsConfiguration_configurationType();
+			
+				single_createattr_LoyaltyPointsConfiguration_currency();
+			
+				single_createattr_LoyaltyPointsConfiguration_value();
+			
 
 	}
 
+	
+	public void single_createattr_Customer_loyaltyPoints() throws JaloBusinessException
+	{
+		
+						Map sqlColumnDefinitions = null;
+					
+				createPropertyAttribute(
+					"Customer", 
+					"loyaltyPoints",  
+					null,
+					"java.lang.Double",
+					de.hybris.platform.jalo.type.AttributeDescriptor.READ_FLAG|de.hybris.platform.jalo.type.AttributeDescriptor.WRITE_FLAG|de.hybris.platform.jalo.type.AttributeDescriptor.OPTIONAL_FLAG|de.hybris.platform.jalo.type.AttributeDescriptor.REMOVE_FLAG|de.hybris.platform.jalo.type.AttributeDescriptor.SEARCH_FLAG,
+					null,
+					sqlColumnDefinitions
+				);
+			
+	}
+	
+	public void single_createattr_LoyaltyPointsConfiguration_code() throws JaloBusinessException
+	{
+		
+						Map sqlColumnDefinitions = null;
+					
+				createPropertyAttribute(
+					"LoyaltyPointsConfiguration", 
+					"code",  
+					null,
+					"java.lang.String",
+					de.hybris.platform.jalo.type.AttributeDescriptor.READ_FLAG|de.hybris.platform.jalo.type.AttributeDescriptor.WRITE_FLAG|de.hybris.platform.jalo.type.AttributeDescriptor.REMOVE_FLAG|de.hybris.platform.jalo.type.AttributeDescriptor.SEARCH_FLAG,
+					null,
+					sqlColumnDefinitions
+				);
+			
+	}
+	
+	public void single_createattr_LoyaltyPointsConfiguration_configurationType() throws JaloBusinessException
+	{
+		
+						Map sqlColumnDefinitions = null;
+					
+				createPropertyAttribute(
+					"LoyaltyPointsConfiguration", 
+					"configurationType",  
+					null,
+					"LoyaltyPointsConfigurationType",
+					de.hybris.platform.jalo.type.AttributeDescriptor.READ_FLAG|de.hybris.platform.jalo.type.AttributeDescriptor.WRITE_FLAG|de.hybris.platform.jalo.type.AttributeDescriptor.OPTIONAL_FLAG|de.hybris.platform.jalo.type.AttributeDescriptor.REMOVE_FLAG|de.hybris.platform.jalo.type.AttributeDescriptor.SEARCH_FLAG,
+					null,
+					sqlColumnDefinitions
+				);
+			
+	}
+	
+	public void single_createattr_LoyaltyPointsConfiguration_currency() throws JaloBusinessException
+	{
+		
+						Map sqlColumnDefinitions = null;
+					
+				createPropertyAttribute(
+					"LoyaltyPointsConfiguration", 
+					"currency",  
+					null,
+					"Currency",
+					de.hybris.platform.jalo.type.AttributeDescriptor.READ_FLAG|de.hybris.platform.jalo.type.AttributeDescriptor.WRITE_FLAG|de.hybris.platform.jalo.type.AttributeDescriptor.OPTIONAL_FLAG|de.hybris.platform.jalo.type.AttributeDescriptor.REMOVE_FLAG|de.hybris.platform.jalo.type.AttributeDescriptor.SEARCH_FLAG,
+					null,
+					sqlColumnDefinitions
+				);
+			
+	}
+	
+	public void single_createattr_LoyaltyPointsConfiguration_value() throws JaloBusinessException
+	{
+		
+						Map sqlColumnDefinitions = null;
+					
+				createPropertyAttribute(
+					"LoyaltyPointsConfiguration", 
+					"value",  
+					null,
+					"java.lang.Double",
+					de.hybris.platform.jalo.type.AttributeDescriptor.READ_FLAG|de.hybris.platform.jalo.type.AttributeDescriptor.WRITE_FLAG|de.hybris.platform.jalo.type.AttributeDescriptor.OPTIONAL_FLAG|de.hybris.platform.jalo.type.AttributeDescriptor.REMOVE_FLAG|de.hybris.platform.jalo.type.AttributeDescriptor.SEARCH_FLAG,
+					null,
+					sqlColumnDefinitions
+				);
+			
+	}
 	
 
 
@@ -74,10 +184,170 @@ public class GeneratedTypeInitializer extends AbstractTypeInitializer
 		// performCreateObjects
 	
 	
+		createEnumerationValues(
+			"LoyaltyPointsConfigurationType",
+			false,
+			Arrays.asList( new String[] {
+			
+				"absolute",
+				"relative"
+			} )
+		);
+	
+				{
+				Map customPropsMap = new HashMap();
+				
+				changeMetaType(
+					"Customer",
+					null,
+					customPropsMap
+				);
+				}
+			
+			single_setAttributeProperties_Customer_loyaltyPoints();
+		
+				{
+				Map customPropsMap = new HashMap();
+				
+				setItemTypeProperties(
+					"LoyaltyPointsConfiguration",
+					false,
+					true,
+					true,
+					null,
+					customPropsMap
+				);
+				}
+			
+			single_setAttributeProperties_LoyaltyPointsConfiguration_code();
+		
+			single_setAttributeProperties_LoyaltyPointsConfiguration_configurationType();
+		
+			single_setAttributeProperties_LoyaltyPointsConfiguration_currency();
+		
+			single_setAttributeProperties_LoyaltyPointsConfiguration_value();
+		
+				setDefaultProperties(
+					"LoyaltyPointsConfigurationType",
+					true,
+					true,
+					null
+				);
+			
 	}
 
 
 		
+						public void single_setAttributeProperties_Customer_loyaltyPoints() throws JaloBusinessException
+						{
+							
+							
+							
+							Map customPropsMap = new HashMap();
+							
+							setAttributeProperties(
+								"Customer", 
+								"loyaltyPoints",
+								false, 
+								Double.valueOf(0.0),
+								"Double.valueOf(0.0)",
+								null,
+								true,
+								true,
+								null,
+								customPropsMap,
+								null
+							);
+						}
+					
+						public void single_setAttributeProperties_LoyaltyPointsConfiguration_code() throws JaloBusinessException
+						{
+							
+							
+							
+							Map customPropsMap = new HashMap();
+							
+							setAttributeProperties(
+								"LoyaltyPointsConfiguration", 
+								"code",
+								true, 
+								null,
+								null,
+								null,
+								true,
+								true,
+								null,
+								customPropsMap,
+								null
+							);
+						}
+					
+						public void single_setAttributeProperties_LoyaltyPointsConfiguration_configurationType() throws JaloBusinessException
+						{
+							
+							
+							
+							Map customPropsMap = new HashMap();
+							
+							setAttributeProperties(
+								"LoyaltyPointsConfiguration", 
+								"configurationType",
+								false, 
+								em().getEnumerationValue("LoyaltyPointsConfigurationType","relative"),
+								"em().getEnumerationValue(\"LoyaltyPointsConfigurationType\",\"relative\")",
+								null,
+								true,
+								true,
+								null,
+								customPropsMap,
+								null
+							);
+						}
+					
+						public void single_setAttributeProperties_LoyaltyPointsConfiguration_currency() throws JaloBusinessException
+						{
+							
+							
+							
+							Map customPropsMap = new HashMap();
+							
+							setAttributeProperties(
+								"LoyaltyPointsConfiguration", 
+								"currency",
+								false, 
+								null,
+								null,
+								null,
+								true,
+								true,
+								null,
+								customPropsMap,
+								null
+							);
+						}
+					
+						public void single_setAttributeProperties_LoyaltyPointsConfiguration_value() throws JaloBusinessException
+						{
+							
+							
+							
+							Map customPropsMap = new HashMap();
+							
+							setAttributeProperties(
+								"LoyaltyPointsConfiguration", 
+								"value",
+								false, 
+								null,
+								null,
+								null,
+								true,
+								true,
+								null,
+								customPropsMap,
+								null
+							);
+						}
+					
 }
 
 	

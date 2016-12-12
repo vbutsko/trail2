@@ -1,7 +1,7 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at Nov 11, 2016 11:21:58 AM                    ---
+ * --- Generated at Dec 12, 2016 9:41:17 AM                     ---
  * ----------------------------------------------------------------
  *  
  * [y] hybris Platform
@@ -15,7 +15,7 @@
  * license agreement you entered into with hybris.
  *  
  */
-package de.hybris.merchandise.constants;
+package de.hybris.merchandise.loyaltysystem.constants;
 
 /**
  * @deprecated use constants in Model classes instead
@@ -25,6 +25,26 @@ package de.hybris.merchandise.constants;
 public class GeneratedMerchandiseloyaltysystemConstants
 {
 	public static final String EXTENSIONNAME = "merchandiseloyaltysystem";
+	public static class TC
+	{
+		public static final String LOYALTYPOINTSCONFIGURATION = "LoyaltyPointsConfiguration".intern();
+		public static final String LOYALTYPOINTSCONFIGURATIONTYPE = "LoyaltyPointsConfigurationType".intern();
+	}
+	public static class Attributes
+	{
+		public static class Customer
+		{
+			public static final String LOYALTYPOINTS = "loyaltyPoints".intern();
+		}
+	}
+	public static class Enumerations
+	{
+		public static class LoyaltyPointsConfigurationType
+		{
+			public static final String ABSOLUTE = "absolute".intern();
+			public static final String RELATIVE = "relative".intern();
+		}
+	}
 	
 	protected GeneratedMerchandiseloyaltysystemConstants()
 	{

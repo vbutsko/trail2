@@ -27,8 +27,7 @@
 	-->
 
 	<bean class="de.hybris.platform.commercefacades.user.data.CustomerData">
-		<property name="loalityPoints" type="Double"/>
+		<property name="loyaltyPoints" type="java.lang.Double"/>
 	</bean>
-
 
 </beans>

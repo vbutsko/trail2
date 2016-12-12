@@ -11,7 +11,7 @@
  * 
  *  
  */
-package de.hybris.merchandise.jalo;
+package de.hybris.merchandise.loyaltysystem.jalo;
 
 import de.hybris.platform.core.Registry;
 import de.hybris.platform.util.JspContext;
@@ -20,7 +20,7 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 
-import de.hybris.merchandise.constants.MerchandiseloyaltysystemConstants;
+import de.hybris.merchandise.loyaltysystem.constants.MerchandiseloyaltysystemConstants;
 
 
 

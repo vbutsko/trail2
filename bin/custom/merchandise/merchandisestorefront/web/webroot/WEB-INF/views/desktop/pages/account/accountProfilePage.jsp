@@ -22,6 +22,10 @@
 		<td><spring:theme code="profile.email" text="E-mail"/>: </td>
 		<td>${fn:escapeXml(customerData.displayUid)}</td>
 	</tr>
+	<tr>
+		<td><spring:theme code="profile.loyaltyPoints" text="Loyalty Points"/>:</td>
+		<td>${fn:escapeXml(customerData.loyaltyPoints)}</td>
+	</tr>
 </table>
 <a class="button" href="update-password"><spring:theme code="text.account.profile.changePassword" text="Change password"/></a>
 <a class="button" href="update-profile"><spring:theme code="text.account.profile.updatePersonalDetails" text="Update personal details"/></a>

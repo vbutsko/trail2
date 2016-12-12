@@ -1,4 +1,6 @@
 # Base Store
 UPDATE BaseStore;uid[unique=true];checkoutFlowGroup;
 ;hybris;merchandiseMultiFlowCheckoutGroup;
+# Base Store
+UPDATE BaseStore;uid[unique=true];checkoutFlowGroup;
 ;hybris;merchandiseMultiPathCheckoutGroup;

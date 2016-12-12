@@ -1,6 +1,7 @@
 <%@ page trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="template" tagdir="/WEB-INF/tags/desktop/template" %>
+<%@ taglib prefix="checkout" tagdir="/WEB-INF/tags/addons/b2ccheckoutaddon/desktop/checkout" %>
 <%@ taglib prefix="cart" tagdir="/WEB-INF/tags/desktop/cart" %>
 <%@ taglib prefix="multi-checkout" tagdir="/WEB-INF/tags/desktop/checkout/multi" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>

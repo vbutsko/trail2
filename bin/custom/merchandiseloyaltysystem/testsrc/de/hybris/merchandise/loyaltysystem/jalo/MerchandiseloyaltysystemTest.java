@@ -11,7 +11,7 @@
  * 
  *  
  */
-package de.hybris.merchandise.jalo;
+package de.hybris.merchandise.loyaltysystem.jalo;
 
 import static org.junit.Assert.assertTrue;
 

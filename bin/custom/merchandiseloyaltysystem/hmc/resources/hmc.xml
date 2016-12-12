@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<configuration xmlns="hybris.de/schemas/hmc/generic"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:schemaLocation="hybris.de/schemas/hmc/generic hmc.xsd">
+
+    <!-- Configuration for extension merchandiseloyaltysystem -->
+    <explorertree>
+        <group name="merchandiseloyaltysystemgroup">
+            <typeref type="LoyaltyPointsConfiguration"/>
+        </group>
+    </explorertree>
+
+    <type name="LoyaltyPointsConfiguration" mode="append">
+        <organizer>
+            <search mode="replace">
+                <condition attribute="code"/>
+                <condition attribute="configurationType"/>
+                <condition attribute="value"/>
+                <condition attribute="currency"/>
+            </search>
+            <result>
+                <listview mode="replace">
+                    <itemlayout>
+                        <attribute name="code"/>
+                        <attribute name="configurationType"/>
+                        <attribute name="value"/>
+                        <attribute name="currency"/>
+                    </itemlayout>
+                </listview>
+            </result>
+            <editor>
+                <essentials>
+                    <listlayout>
+                        <attribute name="code"/>
+                    </listlayout>
+                </essentials>
+                <tab name="tab.loyaltypointsconfiguration">
+                    <section name="section.loyaltypointsconfiguration">
+                        <listlayout>
+                            <attribute name="configurationType"/>
+                            <attribute name="value"/>
+                            <attribute name="currency"/>
+                        </listlayout>
+                    </section>
+                </tab>
+            </editor>
+        </organizer>
+    </type>
+</configuration>
