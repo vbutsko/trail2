@@ -9,5 +9,4 @@ import de.hybris.platform.core.model.user.CustomerModel;
 public interface CustomerLoyaltyPointsService {
 
     void addLoyaltyPointsToCustomer(CustomerModel customerModel, OrderModel orderModel);
-
 }

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2000-2013 hybris AG
+ All rights reserved.
+
+ This software is the confidential and proprietary information of hybris
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with hybris.
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+	<context:annotation-config/>
+
+	<context:component-scan base-package="de.hybris.merchandise.loyaltysystem.core.daos.impl"/>
+
+	<bean id="customerLoyaltyPointsPopulator" class="de.hybris.merchandise.loyaltysystem.facades.populators.CustomerLoyaltyPointsPopulator"/>
+
+	<bean parent="modifyPopulatorList">
+		<property name="list" ref="customerConverter"/>
+		<property name="add"  ref="customerLoyaltyPointsPopulator"/>
+	</bean>
+
+
+	<alias name="loyaltySystemAcceleratorCheckoutFacade" alias="acceleratorCheckoutFacade"/>
+	<bean id="loyaltySystemAcceleratorCheckoutFacade" class="de.hybris.merchandise.loyaltysystem.facades.impl.DefaultCustomerLoyaltyPointsFacade" parent="defaultAcceleratorCheckoutFacade">
+		<property name="defaultCustomerLoyaltyPointsService" ref="defaultCustomerLoyaltyPointsService"/>
+	</bean>
+
+	<alias alias="customerLoyaltyPointsService" name="defaultCustomerLoyaltyPointsService"/>
+	<bean id="defaultCustomerLoyaltyPointsService" class="de.hybris.merchandise.loyaltysystem.core.services.impl.DefaultCustomerLoyaltyPointsService">
+
+		<property name="modelService" ref="modelService"/>
+		<property name="loyaltyPointsConfigurationDAO" ref="loyaltyPointsConfigurationDAO"/>
+	</bean>
+
+	<alias alias="commercePaymentAuthorizationStrategy" name="configurationCommercePaymentAuthorizationStrategy"/>
+	<bean id="configurationCommercePaymentAuthorizationStrategy"
+		  class="de.hybris.merchandise.loyaltysystem.commerceservices.order.impl.ConfigurationCommercePaymentAuthorizationStrategy">
+		<property name="ccStrategy" ref="defaultPaymentAuthorizationStrategy"/>
+	</bean>
+</beans>

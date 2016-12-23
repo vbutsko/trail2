@@ -42,5 +42,29 @@
 		<property name="modelService" ref="modelService"/>
 		<property name="loyaltyPointsConfigurationDAO" ref="loyaltyPointsConfigurationDAO"/>
 	</bean>
-			
+
+	<alias alias="commercePaymentAuthorizationStrategy" name="configurationCommercePaymentAuthorizationStrategy"/>
+	<bean id="configurationCommercePaymentAuthorizationStrategy"
+		  class="de.hybris.merchandise.loyaltysystem.commerceservices.order.impl.ConfigurationCommercePaymentAuthorizationStrategy">
+		<property name="ccStrategy" ref="defaultPaymentAuthorizationStrategy"/>
+		<property name="lpStrategy" ref="loyaltyPointsCommercePaymentAuthorizationStrategy"/>
+	</bean>
+
+	<bean id="loyaltyPointsCommercePaymentAuthorizationStrategy" class="de.hybris.merchandise.loyaltysystem.commerceservices.order.impl.LoyaltyPointsCommercePaymentAuthorizationStrategy">
+		<property name="generateMerchantTransactionCodeStrategy" ref="generateMerchantTransactionCodeStrategy"/>
+		<property name="modelService" ref="modelService"/>
+		<property name="i18nService" ref="i18nService"/>
+		<property name="paymentService" ref="loyaltySystemPaymentServiceImpl"/>
+	</bean>
+
+	<bean id="loyaltySystemPaymentServiceImpl" class="de.hybris.merchandise.loyaltysystem.commerceservices.payment.impl.LoyaltySystemPaymentServiceImpl">
+		<property name="modelService" ref="modelService"/>
+		<property name="commonI18NService" ref="commonI18NService"/>
+		<property name="userService" ref="userService"/>
+		<property name="loyaltyPointsPaymentService" ref="loyaltyPointsPaymentService"/>
+	</bean>
+
+	<bean id="loyaltyPointsPaymentService" class="de.hybris.merchandise.loyaltysystem.commerceservices.payment.impl.LoyaltyPointsPaymentServiceImpl">
+		<property name="modelService" ref="modelService"/>
+	</bean>
 </beans>

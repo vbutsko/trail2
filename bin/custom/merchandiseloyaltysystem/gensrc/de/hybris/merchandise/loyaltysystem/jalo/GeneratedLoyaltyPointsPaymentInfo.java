@@ -1,0 +1,44 @@
+/*
+ * ----------------------------------------------------------------
+ * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
+ * --- Generated at Dec 16, 2016 12:43:16 PM                    ---
+ * ----------------------------------------------------------------
+ *  
+ * [y] hybris Platform
+ *  
+ * Copyright (c) 2000-2015 hybris AG
+ * All rights reserved.
+ *  
+ * This software is the confidential and proprietary information of hybris
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with hybris.
+ *  
+ */
+package de.hybris.merchandise.loyaltysystem.jalo;
+
+import de.hybris.platform.jalo.Item.AttributeMode;
+import de.hybris.platform.jalo.order.payment.PaymentInfo;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Generated class for type {@link de.hybris.platform.jalo.order.payment.PaymentInfo LoyaltyPointsPaymentInfo}.
+ */
+@SuppressWarnings({"deprecation","unused","cast","PMD"})
+public abstract class GeneratedLoyaltyPointsPaymentInfo extends PaymentInfo
+{
+	protected static final Map<String, AttributeMode> DEFAULT_INITIAL_ATTRIBUTES;
+	static
+	{
+		final Map<String, AttributeMode> tmp = new HashMap<String, AttributeMode>(PaymentInfo.DEFAULT_INITIAL_ATTRIBUTES);
+		DEFAULT_INITIAL_ATTRIBUTES = Collections.unmodifiableMap(tmp);
+	}
+	@Override
+	protected Map<String, AttributeMode> getDefaultAttributeModes()
+	{
+		return DEFAULT_INITIAL_ATTRIBUTES;
+	}
+	
+}

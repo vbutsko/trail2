@@ -22,12 +22,16 @@ public class DefaultCustomerLoyaltyPointsService implements CustomerLoyaltyPoint
 
     @Override
     public void addLoyaltyPointsToCustomer(CustomerModel customerModel, OrderModel orderModel) {
+        accureLoyaltyPoints(customerModel, orderModel, getLoyaltyPointsConfigurationModel(orderModel));
+        modelService.save(customerModel);
+    }
+
+    private LoyaltyPointsConfigurationModel getLoyaltyPointsConfigurationModel(OrderModel orderModel){
         List<LoyaltyPointsConfigurationModel> configs = loyaltyPointsConfigurationDAO.findLoyaltyPointsConfigurationByCurrency(orderModel.getCurrency());
         if(configs == null || configs.isEmpty()){
             throw new IllegalArgumentException("there is no LoyaltyPointsConfiguration for this Currency");
         }
-        accureLoyaltyPoints(customerModel, orderModel, configs.get(0));
-        modelService.save(customerModel);
+        return configs.get(0);
     }
 
     private void accureLoyaltyPoints(CustomerModel customerModel, OrderModel orderModel, LoyaltyPointsConfigurationModel configurationModel){

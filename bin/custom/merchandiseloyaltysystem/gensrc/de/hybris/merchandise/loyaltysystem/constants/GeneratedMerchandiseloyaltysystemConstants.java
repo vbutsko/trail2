@@ -1,7 +1,7 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at Dec 12, 2016 9:41:17 AM                     ---
+ * --- Generated at Dec 16, 2016 12:43:16 PM                    ---
  * ----------------------------------------------------------------
  *  
  * [y] hybris Platform
@@ -29,12 +29,17 @@ public class GeneratedMerchandiseloyaltysystemConstants
 	{
 		public static final String LOYALTYPOINTSCONFIGURATION = "LoyaltyPointsConfiguration".intern();
 		public static final String LOYALTYPOINTSCONFIGURATIONTYPE = "LoyaltyPointsConfigurationType".intern();
+		public static final String LOYALTYPOINTSPAYMENTINFO = "LoyaltyPointsPaymentInfo".intern();
 	}
 	public static class Attributes
 	{
 		public static class Customer
 		{
 			public static final String LOYALTYPOINTS = "loyaltyPoints".intern();
+		}
+		public static class Order
+		{
+			public static final String ISPAIDBYLOYALTYPOINTS = "isPaidByLoyaltyPoints".intern();
 		}
 	}
 	public static class Enumerations

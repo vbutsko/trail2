@@ -18,6 +18,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import java.util.Collections;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.mockito.Mockito.when;
 
 
@@ -31,7 +32,8 @@ public class DefaultCustomerLoyaltyPointsServiceUnitTest {
     private ModelService modelService;
 
     @Captor
-    private ArgumentCaptor<CustomerModel> argCaptor;
+    private ArgumentCaptor<Object> argCaptor;
+
 
     @InjectMocks
     private DefaultCustomerLoyaltyPointsService customerLoyaltyPointsService;
@@ -76,7 +78,7 @@ public class DefaultCustomerLoyaltyPointsServiceUnitTest {
         when(loyaltyPointsConfigurationDAO.findLoyaltyPointsConfigurationByCurrency(currencyModel)).thenReturn(Collections.singletonList(loyaltyPointsConfigurationModel));
         customerLoyaltyPointsService.addLoyaltyPointsToCustomer(customerModel, orderModel);
         Mockito.verify(modelService).save(argCaptor.capture());
-        assertEquals(customerModel.getLoyaltyPoints(), argCaptor.getValue().getLoyaltyPoints());
+        assertEquals(customerModel.getLoyaltyPoints(), ((CustomerModel)argCaptor.getValue()).getLoyaltyPoints());
     }
 
 }

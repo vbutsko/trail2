@@ -56,6 +56,16 @@ public class GeneratedTypeInitializer extends AbstractTypeInitializer
 			false
 		);
 	
+		createItemType(
+			"LoyaltyPointsPaymentInfo",
+			"CreditCardPaymentInfo",
+			de.hybris.merchandise.loyaltysystem.jalo.LoyaltyPointsPaymentInfo.class,
+			null,
+			false,
+			null,
+			false
+		);
+	
 		createEnumerationType(
 			"LoyaltyPointsConfigurationType",
 			null
@@ -83,6 +93,8 @@ public class GeneratedTypeInitializer extends AbstractTypeInitializer
 				single_createattr_LoyaltyPointsConfiguration_currency();
 			
 				single_createattr_LoyaltyPointsConfiguration_value();
+			
+				single_createattr_Order_isPaidByLoyaltyPoints();
 			
 
 	}
@@ -173,6 +185,23 @@ public class GeneratedTypeInitializer extends AbstractTypeInitializer
 			
 	}
 	
+	public void single_createattr_Order_isPaidByLoyaltyPoints() throws JaloBusinessException
+	{
+		
+						Map sqlColumnDefinitions = null;
+					
+				createPropertyAttribute(
+					"Order", 
+					"isPaidByLoyaltyPoints",  
+					null,
+					"java.lang.Boolean",
+					de.hybris.platform.jalo.type.AttributeDescriptor.READ_FLAG|de.hybris.platform.jalo.type.AttributeDescriptor.WRITE_FLAG|de.hybris.platform.jalo.type.AttributeDescriptor.OPTIONAL_FLAG|de.hybris.platform.jalo.type.AttributeDescriptor.REMOVE_FLAG|de.hybris.platform.jalo.type.AttributeDescriptor.SEARCH_FLAG,
+					null,
+					sqlColumnDefinitions
+				);
+			
+	}
+	
 
 
 	/**
@@ -226,6 +255,31 @@ public class GeneratedTypeInitializer extends AbstractTypeInitializer
 			single_setAttributeProperties_LoyaltyPointsConfiguration_currency();
 		
 			single_setAttributeProperties_LoyaltyPointsConfiguration_value();
+		
+				{
+				Map customPropsMap = new HashMap();
+				
+				setItemTypeProperties(
+					"LoyaltyPointsPaymentInfo",
+					false,
+					true,
+					true,
+					null,
+					customPropsMap
+				);
+				}
+			
+				{
+				Map customPropsMap = new HashMap();
+				
+				changeMetaType(
+					"Order",
+					null,
+					customPropsMap
+				);
+				}
+			
+			single_setAttributeProperties_Order_isPaidByLoyaltyPoints();
 		
 				setDefaultProperties(
 					"LoyaltyPointsConfigurationType",
@@ -339,6 +393,28 @@ public class GeneratedTypeInitializer extends AbstractTypeInitializer
 								false, 
 								null,
 								null,
+								null,
+								true,
+								true,
+								null,
+								customPropsMap,
+								null
+							);
+						}
+					
+						public void single_setAttributeProperties_Order_isPaidByLoyaltyPoints() throws JaloBusinessException
+						{
+							
+							
+							
+							Map customPropsMap = new HashMap();
+							
+							setAttributeProperties(
+								"Order", 
+								"isPaidByLoyaltyPoints",
+								false, 
+								java.lang.Boolean.FALSE,
+								"java.lang.Boolean.FALSE",
 								null,
 								true,
 								true,
