@@ -13,7 +13,11 @@
  */
 package de.hybris.merchandise.storefront.controllers.pages.checkout.steps;
 
+import de.hybris.merchandise.loyaltysystem.facades.LPUserFacade;
+import de.hybris.merchandise.loyaltysystem.facades.impl.LoyaltyPointsPaymentFacade;
+import de.hybris.merchandise.loyaltysystem.facades.order.data.LPPaymentInfoData;
 import de.hybris.platform.acceleratorfacades.payment.data.PaymentSubscriptionResultData;
+import de.hybris.platform.acceleratorservices.payment.data.CustomerInfoData;
 import de.hybris.platform.acceleratorservices.payment.data.PaymentErrorField;
 import de.hybris.platform.acceleratorstorefrontcommons.annotations.RequireHardLogIn;
 import de.hybris.platform.acceleratorstorefrontcommons.controllers.util.GlobalMessages;
@@ -23,12 +27,15 @@ import de.hybris.platform.commercefacades.order.data.CCPaymentInfoData;
 import de.hybris.platform.commercefacades.user.data.AddressData;
 import de.hybris.merchandise.storefront.controllers.ControllerConstants;
 
+import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -42,7 +49,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping(value = "/checkout/multi/sop")
 public class SopPaymentResponseController extends PaymentMethodCheckoutStepController
 {
-
+	@Resource(name = "loyaltyPointsPaymentFacade")
+	private LoyaltyPointsPaymentFacade loyaltyPointsPaymentFacade;
+	@Resource(name = "loyaltyPointsUserFacade")
+	private LPUserFacade lpUserFacade;
 	@RequestMapping(value = "/response", method = RequestMethod.POST)
 	@RequireHardLogIn
 	public String doHandleSopResponse(final HttpServletRequest request, @Valid final SopPaymentDetailsForm sopPaymentDetailsForm,
@@ -50,78 +60,67 @@ public class SopPaymentResponseController extends PaymentMethodCheckoutStepContr
 			throws CMSItemNotFoundException
 	{
 		final Map<String, String> resultMap = getRequestParameterMap(request);
+		if(resultMap.get("payment_method").compareTo("LP") == 0){
+			LPPaymentInfoData lpPaymentInfoData = getLoyaltyPointsPaymentFacade().saveLPPaymentInfo(getCheckoutFacade().getCheckoutCart().getDeliveryAddress(), resultMap);
+			getCheckoutFacade().setPaymentDetails(lpPaymentInfoData.getId());
+			getLpUserFacade().setDefaultLPPaymentInfo(lpPaymentInfoData);
+		}else {
+			final boolean savePaymentInfo = sopPaymentDetailsForm.isSavePaymentInfo()
+					|| getCheckoutCustomerStrategy().isAnonymousCheckout();
+			final PaymentSubscriptionResultData paymentSubscriptionResultData = this.getPaymentFacade().completeSopCreateSubscription(
+					resultMap, savePaymentInfo);
 
-		final boolean savePaymentInfo = sopPaymentDetailsForm.isSavePaymentInfo()
-				|| getCheckoutCustomerStrategy().isAnonymousCheckout();
-		final PaymentSubscriptionResultData paymentSubscriptionResultData = this.getPaymentFacade().completeSopCreateSubscription(
-				resultMap, savePaymentInfo);
+			if (paymentSubscriptionResultData.isSuccess() && paymentSubscriptionResultData.getStoredCard() != null
+					&& StringUtils.isNotBlank(paymentSubscriptionResultData.getStoredCard().getSubscriptionId())) {
+				final CCPaymentInfoData newPaymentSubscription = paymentSubscriptionResultData.getStoredCard();
 
-		if (paymentSubscriptionResultData.isSuccess() && paymentSubscriptionResultData.getStoredCard() != null
-				&& StringUtils.isNotBlank(paymentSubscriptionResultData.getStoredCard().getSubscriptionId()))
-		{
-			final CCPaymentInfoData newPaymentSubscription = paymentSubscriptionResultData.getStoredCard();
-
-			if (getUserFacade().getCCPaymentInfos(true).size() <= 1)
-			{
-				getUserFacade().setDefaultPaymentInfo(newPaymentSubscription);
-			}
-			getCheckoutFacade().setPaymentDetails(newPaymentSubscription.getId());
-		}
-		else if ((paymentSubscriptionResultData.getDecision() != null && paymentSubscriptionResultData.getDecision()
-				.equalsIgnoreCase("error"))
-				|| (paymentSubscriptionResultData.getErrors() != null && !paymentSubscriptionResultData.getErrors().isEmpty()))
-		{
-			// Have SOP errors that we can display
-
-			setupAddPaymentPage(model);
-
-			// Build up the SOP form data and render page containing form
-			try
-			{
-				setupSilentOrderPostPage(sopPaymentDetailsForm, model);
-			}
-			catch (final Exception e)
-			{
-				LOG.error("Failed to build beginCreateSubscription request", e);
-				GlobalMessages.addErrorMessage(model, "checkout.multi.paymentMethod.addPaymentDetails.generalError");
-				return enterStep(model, redirectAttributes);
-			}
-
-			if (paymentSubscriptionResultData.getErrors() != null && !paymentSubscriptionResultData.getErrors().isEmpty())
-			{
-				GlobalMessages.addErrorMessage(model, "checkout.error.paymentethod.formentry.invalid");
-				// Add in specific errors for invalid fields
-				for (final PaymentErrorField paymentErrorField : paymentSubscriptionResultData.getErrors().values())
-				{
-					if (paymentErrorField.isMissing())
-					{
-						bindingResult.rejectValue(paymentErrorField.getName(), "checkout.error.paymentethod.formentry.sop.missing."
-								+ paymentErrorField.getName(), "Please enter a value for this field");
-					}
-					if (paymentErrorField.isInvalid())
-					{
-						bindingResult.rejectValue(paymentErrorField.getName(), "checkout.error.paymentethod.formentry.sop.invalid."
-								+ paymentErrorField.getName(), "This value is invalid for this field");
-					}
+				if (getUserFacade().getCCPaymentInfos(true).size() <= 1) {
+					getUserFacade().setDefaultPaymentInfo(newPaymentSubscription);
 				}
-			}
-			else if (paymentSubscriptionResultData.getDecision() != null
-					&& paymentSubscriptionResultData.getDecision().equalsIgnoreCase("error"))
-			{
-				LOG.error("Failed to create subscription. Error occurred while contacting external payment services.");
-				GlobalMessages.addErrorMessage(model, "checkout.multi.paymentMethod.addPaymentDetails.generalError");
-			}
+				getCheckoutFacade().setPaymentDetails(newPaymentSubscription.getId());
+			} else if ((paymentSubscriptionResultData.getDecision() != null && paymentSubscriptionResultData.getDecision()
+					.equalsIgnoreCase("error"))
+					|| (paymentSubscriptionResultData.getErrors() != null && !paymentSubscriptionResultData.getErrors().isEmpty())) {
+				// Have SOP errors that we can display
 
-			return ControllerConstants.Views.Pages.MultiStepCheckout.SilentOrderPostPage;
-		}
-		else
-		{
-			// SOP ERROR!
-			LOG.error("Failed to create subscription.  Please check the log files for more information");
-			return REDIRECT_URL_ERROR + "/?decision=" + paymentSubscriptionResultData.getDecision() + "&reasonCode="
-					+ paymentSubscriptionResultData.getResultCode();
-		}
+				setupAddPaymentPage(model);
 
+				// Build up the SOP form data and render page containing form
+				try {
+					setupSilentOrderPostPage(sopPaymentDetailsForm, model);
+				} catch (final Exception e) {
+					LOG.error("Failed to build beginCreateSubscription request", e);
+					GlobalMessages.addErrorMessage(model, "checkout.multi.paymentMethod.addPaymentDetails.generalError");
+					return enterStep(model, redirectAttributes);
+				}
+
+				if (paymentSubscriptionResultData.getErrors() != null && !paymentSubscriptionResultData.getErrors().isEmpty()) {
+					GlobalMessages.addErrorMessage(model, "checkout.error.paymentethod.formentry.invalid");
+					// Add in specific errors for invalid fields
+					for (final PaymentErrorField paymentErrorField : paymentSubscriptionResultData.getErrors().values()) {
+						if (paymentErrorField.isMissing()) {
+							bindingResult.rejectValue(paymentErrorField.getName(), "checkout.error.paymentethod.formentry.sop.missing."
+									+ paymentErrorField.getName(), "Please enter a value for this field");
+						}
+						if (paymentErrorField.isInvalid()) {
+							bindingResult.rejectValue(paymentErrorField.getName(), "checkout.error.paymentethod.formentry.sop.invalid."
+									+ paymentErrorField.getName(), "This value is invalid for this field");
+						}
+					}
+				} else if (paymentSubscriptionResultData.getDecision() != null
+						&& paymentSubscriptionResultData.getDecision().equalsIgnoreCase("error")) {
+					LOG.error("Failed to create subscription. Error occurred while contacting external payment services.");
+					GlobalMessages.addErrorMessage(model, "checkout.multi.paymentMethod.addPaymentDetails.generalError");
+				}
+
+				return ControllerConstants.Views.Pages.MultiStepCheckout.SilentOrderPostPage;
+			} else {
+				// SOP ERROR!
+				LOG.error("Failed to create subscription.  Please check the log files for more information");
+				return REDIRECT_URL_ERROR + "/?decision=" + paymentSubscriptionResultData.getDecision() + "&reasonCode="
+						+ paymentSubscriptionResultData.getResultCode();
+			}
+		}
 		return getCheckoutStep().nextStep();
 	}
 
@@ -137,25 +136,42 @@ public class SopPaymentResponseController extends PaymentMethodCheckoutStepContr
 		model.addAttribute("sopPaymentDetailsForm", sopPaymentDetailsForm);
 		if (useDeliveryAddress)
 		{
-			final AddressData deliveryAddress = getCheckoutFacade().getCheckoutCart().getDeliveryAddress();
-
-			if (deliveryAddress.getRegion() != null && !StringUtils.isEmpty(deliveryAddress.getRegion().getIsocode()))
-			{
-				sopPaymentDetailsForm.setBillTo_state(deliveryAddress.getRegion().getIsocodeShort());
-			}
-
-			sopPaymentDetailsForm.setBillTo_titleCode(deliveryAddress.getTitleCode());
-			sopPaymentDetailsForm.setBillTo_firstName(deliveryAddress.getFirstName());
-			sopPaymentDetailsForm.setBillTo_lastName(deliveryAddress.getLastName());
-			sopPaymentDetailsForm.setBillTo_street1(deliveryAddress.getLine1());
-			sopPaymentDetailsForm.setBillTo_street2(deliveryAddress.getLine2());
-			sopPaymentDetailsForm.setBillTo_city(deliveryAddress.getTown());
-			sopPaymentDetailsForm.setBillTo_postalCode(deliveryAddress.getPostalCode());
-			sopPaymentDetailsForm.setBillTo_country(deliveryAddress.getCountry().getIsocode());
-			sopPaymentDetailsForm.setBillTo_phoneNumber(deliveryAddress.getPhone());
+			setBillingAddressIntoPaymentDetails(sopPaymentDetailsForm);
 		}
 		return ControllerConstants.Views.Fragments.Checkout.BillingAddressForm;
 	}
 
+	private void setBillingAddressIntoPaymentDetails(SopPaymentDetailsForm sopPaymentDetailsForm){
+		final AddressData deliveryAddress = getCheckoutFacade().getCheckoutCart().getDeliveryAddress();
 
+		if (deliveryAddress.getRegion() != null && !StringUtils.isEmpty(deliveryAddress.getRegion().getIsocode()))
+		{
+			sopPaymentDetailsForm.setBillTo_state(deliveryAddress.getRegion().getIsocodeShort());
+		}
+
+		sopPaymentDetailsForm.setBillTo_titleCode(deliveryAddress.getTitleCode());
+		sopPaymentDetailsForm.setBillTo_firstName(deliveryAddress.getFirstName());
+		sopPaymentDetailsForm.setBillTo_lastName(deliveryAddress.getLastName());
+		sopPaymentDetailsForm.setBillTo_street1(deliveryAddress.getLine1());
+		sopPaymentDetailsForm.setBillTo_street2(deliveryAddress.getLine2());
+		sopPaymentDetailsForm.setBillTo_city(deliveryAddress.getTown());
+		sopPaymentDetailsForm.setBillTo_postalCode(deliveryAddress.getPostalCode());
+		sopPaymentDetailsForm.setBillTo_country(deliveryAddress.getCountry().getIsocode());
+		sopPaymentDetailsForm.setBillTo_phoneNumber(deliveryAddress.getPhone());
+	}
+
+	public LoyaltyPointsPaymentFacade getLoyaltyPointsPaymentFacade() {
+		return loyaltyPointsPaymentFacade;
+	}
+	public void setLoyaltyPointsPaymentFacade(LoyaltyPointsPaymentFacade loyaltyPointsPaymentFacade) {
+		this.loyaltyPointsPaymentFacade = loyaltyPointsPaymentFacade;
+	}
+
+	public LPUserFacade getLpUserFacade() {
+		return lpUserFacade;
+	}
+
+	public void setLpUserFacade(LPUserFacade lpUserFacade) {
+		this.lpUserFacade = lpUserFacade;
+	}
 }

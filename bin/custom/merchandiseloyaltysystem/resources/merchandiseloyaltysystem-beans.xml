@@ -30,4 +30,17 @@
 		<property name="loyaltyPoints" type="java.lang.Double"/>
 	</bean>
 
+
+	<bean class="de.hybris.platform.commercefacades.order.data.CartData">
+		<property name="canBePaidByLoyaltyPoints" type="boolean"/>
+	</bean>
+
+	<bean class="de.hybris.merchandise.loyaltysystem.facades.order.data.LPPaymentInfoData">
+		<property name="billingAddress" type="de.hybris.platform.commercefacades.user.data.AddressData"/>
+		<property name="id" type="java.lang.String"/>
+	</bean>
+
+	<bean class="de.hybris.platform.commercefacades.order.data.AbstractOrderData">
+		<property name="LPPaymentInfo" type="de.hybris.merchandise.loyaltysystem.facades.order.data.LPPaymentInfoData"/>
+	</bean>
 </beans>

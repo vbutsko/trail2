@@ -24,16 +24,30 @@
 	<context:component-scan base-package="de.hybris.merchandise.loyaltysystem.core.daos.impl"/>
 
 	<bean id="customerLoyaltyPointsPopulator" class="de.hybris.merchandise.loyaltysystem.facades.populators.CustomerLoyaltyPointsPopulator"/>
+	<bean id="cartLoyaltyPointsPopulator" class="de.hybris.merchandise.loyaltysystem.facades.populators.CartLoyaltyPointsPopulator"/>
 
 	<bean parent="modifyPopulatorList">
 		<property name="list" ref="customerConverter"/>
 		<property name="add"  ref="customerLoyaltyPointsPopulator"/>
-	</bean>
 
+	</bean>
+	<bean parent="modifyPopulatorList">
+		<property name="list" ref="accExtendedCartConverter"/>
+		<property name="add" ref="cartLoyaltyPointsPopulator"/>
+	</bean>
 
 	<alias name="loyaltySystemAcceleratorCheckoutFacade" alias="acceleratorCheckoutFacade"/>
 	<bean id="loyaltySystemAcceleratorCheckoutFacade" class="de.hybris.merchandise.loyaltysystem.facades.impl.DefaultCustomerLoyaltyPointsFacade" parent="defaultAcceleratorCheckoutFacade">
 		<property name="defaultCustomerLoyaltyPointsService" ref="defaultCustomerLoyaltyPointsService"/>
+		<property name="lpCustometAccountService" ref="lpCustomerAccountServiceImpl"/>
+	</bean>
+
+	<bean id="lpCustomerAccountServiceImpl" class="de.hybris.merchandise.loyaltysystem.core.services.impl.LPCustometAccountServiceImpl">
+		<property name="lpCustomerAccountDao" ref="lpCustomerAccountDaoImpl"/>
+		<property name="modelService" ref="modelService"/>
+	</bean>
+	<bean id="lpCustomerAccountDaoImpl" class="de.hybris.merchandise.loyaltysystem.core.daos.impl.LPCustomerAccountDaoImpl">
+		<property name="flexibleSearchService" ref="flexibleSearchService"/>
 	</bean>
 
 	<alias alias="customerLoyaltyPointsService" name="defaultCustomerLoyaltyPointsService"/>
@@ -67,4 +81,53 @@
 	<bean id="loyaltyPointsPaymentService" class="de.hybris.merchandise.loyaltysystem.commerceservices.payment.impl.LoyaltyPointsPaymentServiceImpl">
 		<property name="modelService" ref="modelService"/>
 	</bean>
+
+
+	<!-- loyaltyPointsPaymentFacade for Controller -->
+	<bean id="loyaltyPointsPaymentFacade" class="de.hybris.merchandise.loyaltysystem.facades.impl.LoyaltyPointsPaymentFacade">
+		<property name="checkoutCustomerStrategy" ref="checkoutCustomerStrategy"/>
+		<property name="loyaltyPointsPaymentInfoCreateStrategy" ref="loyaltyPointsPaymentInfoCreateStrategy"/>
+		<property name="LPPaymentInfoDataConverter" ref="lPPaymentInfoDataConverter"/>
+	</bean>
+
+	<!--  loyaltyPoints LPUserFacade-->
+	<bean id="loyaltyPointsUserFacade" class="de.hybris.merchandise.loyaltysystem.facades.impl.DefaultLPUserFacade">
+
+		<property name="lpCustometAccountService" ref="lpCustomerAccountServiceImpl"/>
+		<property name="checkoutCustomerStrategy" ref="checkoutCustomerStrategy"/>
+	</bean>
+
+	<!-- loyaltyPointsPaymentInfoCreateStrategy -->
+	<bean id="loyaltyPointsPaymentInfoCreateStrategy" class="de.hybris.merchandise.loyaltysystem.commerceservices.payment.strategies.impl.LoyaltyPointsPaymentInfoCreateStrategyImpl">
+		<property name="modelService" ref="modelService"/>
+		<property name="commonI18NService" ref="commonI18NService"/>
+		<property name="customerEmailResolutionService" ref="customerEmailResolutionService" />
+		<property name="userService" ref="userService"/>
+	</bean>
+	<!-- lPPaymentInfoDataConverter -->
+    <bean id="lPPaymentInfoDataConverter" parent="abstractPopulatingConverter">
+        <property name="targetClass" value="de.hybris.merchandise.loyaltysystem.facades.order.data.LPPaymentInfoData"/>
+        <property name="populators">
+            <list>
+                <ref bean="loyaltyPointsPaymentInfoPopuator"/>
+            </list>
+        </property>
+    </bean>
+
+    <!-- populator for LPPaymentInfoData -->
+    <bean id="loyaltyPointsPaymentInfoPopuator" class="de.hybris.merchandise.loyaltysystem.facades.populators.LoyaltyPointsPaymentInfoPopulator">
+        <property name="addressDataConverter" ref="addressConverter"/>
+    </bean>
+
+	<!-- populator for cartData -->
+	<bean id="extendedCartPopulator"
+		  class="de.hybris.merchandise.loyaltysystem.facades.populators.LPExtendedCartPopulator"
+		  parent="defaultCartPopulator">
+		<property name="loyaltyPointsPaymentInfoConverter" ref="lPPaymentInfoDataConverter"/>
+	</bean>
+
+
+	<!-- facade for validation -->
+	<alias name="lpCheckoutFlowFacade" alias="checkoutFlowFacade"/>
+	<bean id="lpCheckoutFlowFacade" class="de.hybris.merchandise.loyaltysystem.facades.impl.LPCheckoutFlowFacade" parent="defaultCheckoutFlowFacade"/>
 </beans>

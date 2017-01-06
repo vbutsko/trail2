@@ -52,6 +52,7 @@ public class LoayaltyPointsPaymentServiceImplTest {
         currencyModel = new CurrencyModel();
         currencyModel.setSymbol(CURRENCY_SYMBOL);
         currencyModel.setIsocode(CURRENCY_ISOCODE);
+        loyaltyPointsPaymentService.setLpService(new DefaultCustomerLoyaltyPointsService());
     }
     @Test
     public void testPayForOrderByLoyaltyPoints(){

@@ -60,9 +60,9 @@
 				</attributes>
 			</itemtype>
 
-			<itemtype code="LoyaltyPointsPaymentInfo" autocreate="true" generate="true" extends="CreditCardPaymentInfo"/>
+			<itemtype code="LoyaltyPointsPaymentInfo" autocreate="true" generate="true" extends="PaymentInfo"/>
 
-			<itemtype code="Order" autocreate="false" generate="false">
+			<itemtype code="AbstractOrder" autocreate="false" generate="false">
 				<attributes>
 					<attribute qualifier="isPaidByLoyaltyPoints" type="java.lang.Boolean">
 						<persistence type="property"/>

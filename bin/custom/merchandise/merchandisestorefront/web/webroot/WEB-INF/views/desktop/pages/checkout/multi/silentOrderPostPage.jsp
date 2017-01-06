@@ -42,13 +42,26 @@
 
 					<div class="headline"><spring:theme code="checkout.multi.paymentMethod.addPaymentDetails.paymentCard"/></div>
 					<div class="required right"><spring:theme code="form.required"/></div>
+					<input name="payment_method" id="LP" type="radio" value="LP">
+					<c:if test="${not cartData.canBePaidByLoyaltyPoints}">
+						<script type="text/javascript">
+							document.getElementById('LP').setAttribute('disabled', true);
+						</script>
+						you don't have enough
+					</c:if>
+					Loyalty Points <br>
+					<input name="payment_method" id="CC" type="radio" value="CC" checked="checked">Credit Card <br>
 					<div class="description"><spring:theme code="checkout.multi.paymentMethod.addPaymentDetails.enterYourCardDetails"/></div>
 
+
+					
 					<c:if test="${not empty paymentInfos}">
 						<button type="button" class="positive clear view-saved-payments" id="viewSavedPayments">
 							<spring:theme code="checkout.multi.paymentMethod.viewSavedPayments" text="View Saved Payments"/>
 						</button>
 					</c:if>
+
+					
 
 					<div class="cardForm">
 						<formElement:formSelectBox idKey="card_cardType" labelKey="payment.cardType" path="card_cardType" mandatory="true" skipBlank="false" skipBlankMessageKey="payment.cardType.pleaseSelect" items="${sopCardTypes}" tabindex="1"/>

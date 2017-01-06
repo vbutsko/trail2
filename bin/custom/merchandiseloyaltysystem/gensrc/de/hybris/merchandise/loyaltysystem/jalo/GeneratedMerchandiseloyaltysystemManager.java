@@ -1,7 +1,7 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at Dec 16, 2016 12:43:16 PM                    ---
+ * --- Generated at Jan 6, 2017 12:48:24 PM                     ---
  * ----------------------------------------------------------------
  *  
  * [y] hybris Platform
@@ -20,6 +20,7 @@ package de.hybris.merchandise.loyaltysystem.jalo;
 import de.hybris.merchandise.loyaltysystem.constants.MerchandiseloyaltysystemConstants;
 import de.hybris.merchandise.loyaltysystem.jalo.LoyaltyPointsConfiguration;
 import de.hybris.merchandise.loyaltysystem.jalo.LoyaltyPointsPaymentInfo;
+import de.hybris.platform.jalo.GenericItem;
 import de.hybris.platform.jalo.Item;
 import de.hybris.platform.jalo.Item.AttributeMode;
 import de.hybris.platform.jalo.JaloBusinessException;
@@ -27,7 +28,6 @@ import de.hybris.platform.jalo.JaloSystemException;
 import de.hybris.platform.jalo.SessionContext;
 import de.hybris.platform.jalo.extension.Extension;
 import de.hybris.platform.jalo.order.AbstractOrder;
-import de.hybris.platform.jalo.order.Order;
 import de.hybris.platform.jalo.type.ComposedType;
 import de.hybris.platform.jalo.type.JaloGenericCreationException;
 import de.hybris.platform.jalo.user.Customer;
@@ -51,7 +51,7 @@ public abstract class GeneratedMerchandiseloyaltysystemManager extends Extension
 		ttmp.put("de.hybris.platform.jalo.user.Customer", Collections.unmodifiableMap(tmp));
 		tmp = new HashMap<String, AttributeMode>();
 		tmp.put("isPaidByLoyaltyPoints", AttributeMode.INITIAL);
-		ttmp.put("de.hybris.platform.jalo.order.Order", Collections.unmodifiableMap(tmp));
+		ttmp.put("de.hybris.platform.jalo.order.AbstractOrder", Collections.unmodifiableMap(tmp));
 		DEFAULT_INITIAL_ATTRIBUTES = ttmp;
 	}
 	@Override
@@ -125,74 +125,74 @@ public abstract class GeneratedMerchandiseloyaltysystemManager extends Extension
 	}
 	
 	/**
-	 * <i>Generated method</i> - Getter of the <code>Order.isPaidByLoyaltyPoints</code> attribute.
+	 * <i>Generated method</i> - Getter of the <code>AbstractOrder.isPaidByLoyaltyPoints</code> attribute.
 	 * @return the isPaidByLoyaltyPoints
 	 */
-	public Boolean isIsPaidByLoyaltyPoints(final SessionContext ctx, final Order item)
+	public Boolean isIsPaidByLoyaltyPoints(final SessionContext ctx, final AbstractOrder item)
 	{
-		return (Boolean)item.getProperty( ctx, MerchandiseloyaltysystemConstants.Attributes.Order.ISPAIDBYLOYALTYPOINTS);
+		return (Boolean)item.getProperty( ctx, MerchandiseloyaltysystemConstants.Attributes.AbstractOrder.ISPAIDBYLOYALTYPOINTS);
 	}
 	
 	/**
-	 * <i>Generated method</i> - Getter of the <code>Order.isPaidByLoyaltyPoints</code> attribute.
+	 * <i>Generated method</i> - Getter of the <code>AbstractOrder.isPaidByLoyaltyPoints</code> attribute.
 	 * @return the isPaidByLoyaltyPoints
 	 */
-	public Boolean isIsPaidByLoyaltyPoints(final Order item)
+	public Boolean isIsPaidByLoyaltyPoints(final AbstractOrder item)
 	{
 		return isIsPaidByLoyaltyPoints( getSession().getSessionContext(), item );
 	}
 	
 	/**
-	 * <i>Generated method</i> - Getter of the <code>Order.isPaidByLoyaltyPoints</code> attribute. 
+	 * <i>Generated method</i> - Getter of the <code>AbstractOrder.isPaidByLoyaltyPoints</code> attribute. 
 	 * @return the isPaidByLoyaltyPoints
 	 */
-	public boolean isIsPaidByLoyaltyPointsAsPrimitive(final SessionContext ctx, final Order item)
+	public boolean isIsPaidByLoyaltyPointsAsPrimitive(final SessionContext ctx, final AbstractOrder item)
 	{
 		Boolean value = isIsPaidByLoyaltyPoints( ctx,item );
 		return value != null ? value.booleanValue() : false;
 	}
 	
 	/**
-	 * <i>Generated method</i> - Getter of the <code>Order.isPaidByLoyaltyPoints</code> attribute. 
+	 * <i>Generated method</i> - Getter of the <code>AbstractOrder.isPaidByLoyaltyPoints</code> attribute. 
 	 * @return the isPaidByLoyaltyPoints
 	 */
-	public boolean isIsPaidByLoyaltyPointsAsPrimitive(final Order item)
+	public boolean isIsPaidByLoyaltyPointsAsPrimitive(final AbstractOrder item)
 	{
 		return isIsPaidByLoyaltyPointsAsPrimitive( getSession().getSessionContext(), item );
 	}
 	
 	/**
-	 * <i>Generated method</i> - Setter of the <code>Order.isPaidByLoyaltyPoints</code> attribute. 
+	 * <i>Generated method</i> - Setter of the <code>AbstractOrder.isPaidByLoyaltyPoints</code> attribute. 
 	 * @param value the isPaidByLoyaltyPoints
 	 */
-	public void setIsPaidByLoyaltyPoints(final SessionContext ctx, final Order item, final Boolean value)
+	public void setIsPaidByLoyaltyPoints(final SessionContext ctx, final AbstractOrder item, final Boolean value)
 	{
-		item.setProperty(ctx, MerchandiseloyaltysystemConstants.Attributes.Order.ISPAIDBYLOYALTYPOINTS,value);
+		item.setProperty(ctx, MerchandiseloyaltysystemConstants.Attributes.AbstractOrder.ISPAIDBYLOYALTYPOINTS,value);
 	}
 	
 	/**
-	 * <i>Generated method</i> - Setter of the <code>Order.isPaidByLoyaltyPoints</code> attribute. 
+	 * <i>Generated method</i> - Setter of the <code>AbstractOrder.isPaidByLoyaltyPoints</code> attribute. 
 	 * @param value the isPaidByLoyaltyPoints
 	 */
-	public void setIsPaidByLoyaltyPoints(final Order item, final Boolean value)
+	public void setIsPaidByLoyaltyPoints(final AbstractOrder item, final Boolean value)
 	{
 		setIsPaidByLoyaltyPoints( getSession().getSessionContext(), item, value );
 	}
 	
 	/**
-	 * <i>Generated method</i> - Setter of the <code>Order.isPaidByLoyaltyPoints</code> attribute. 
+	 * <i>Generated method</i> - Setter of the <code>AbstractOrder.isPaidByLoyaltyPoints</code> attribute. 
 	 * @param value the isPaidByLoyaltyPoints
 	 */
-	public void setIsPaidByLoyaltyPoints(final SessionContext ctx, final Order item, final boolean value)
+	public void setIsPaidByLoyaltyPoints(final SessionContext ctx, final AbstractOrder item, final boolean value)
 	{
 		setIsPaidByLoyaltyPoints( ctx, item, Boolean.valueOf( value ) );
 	}
 	
 	/**
-	 * <i>Generated method</i> - Setter of the <code>Order.isPaidByLoyaltyPoints</code> attribute. 
+	 * <i>Generated method</i> - Setter of the <code>AbstractOrder.isPaidByLoyaltyPoints</code> attribute. 
 	 * @param value the isPaidByLoyaltyPoints
 	 */
-	public void setIsPaidByLoyaltyPoints(final Order item, final boolean value)
+	public void setIsPaidByLoyaltyPoints(final AbstractOrder item, final boolean value)
 	{
 		setIsPaidByLoyaltyPoints( getSession().getSessionContext(), item, value );
 	}

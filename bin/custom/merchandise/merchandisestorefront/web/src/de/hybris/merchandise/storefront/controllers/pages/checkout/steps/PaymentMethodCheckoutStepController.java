@@ -14,6 +14,7 @@
 package de.hybris.merchandise.storefront.controllers.pages.checkout.steps;
 
 
+import de.hybris.merchandise.storefront.forms.LoyaltyPointsSopPaymentDetailsForm;
 import de.hybris.platform.acceleratorservices.enums.CheckoutPciOptionEnum;
 import de.hybris.platform.acceleratorservices.payment.constants.PaymentConstants;
 import de.hybris.platform.acceleratorservices.payment.data.PaymentData;
@@ -160,7 +161,7 @@ public class PaymentMethodCheckoutStepController extends AbstractCheckoutStepCon
 		else if (CheckoutPciOptionEnum.SOP.equals(subscriptionPciOption))
 		{
 			// Build up the SOP form data and render page containing form
-			final SopPaymentDetailsForm sopPaymentDetailsForm = new SopPaymentDetailsForm();
+			final LoyaltyPointsSopPaymentDetailsForm sopPaymentDetailsForm = new LoyaltyPointsSopPaymentDetailsForm();
 			try
 			{
 				setupSilentOrderPostPage(sopPaymentDetailsForm, model);
@@ -192,6 +193,7 @@ public class PaymentMethodCheckoutStepController extends AbstractCheckoutStepCon
 	public String add(final Model model, @Valid final PaymentDetailsForm paymentDetailsForm, final BindingResult bindingResult)
 			throws CMSItemNotFoundException
 	{
+
 		getPaymentDetailsValidator().validate(paymentDetailsForm, bindingResult);
 		setupAddPaymentPage(model);
 

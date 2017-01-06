@@ -23,11 +23,16 @@
 
 	<multi-checkout:checkoutProgressBar steps="${checkoutSteps}" progressBarId="${progressBarId}"/>
 
+
+
 	<div class="span-14 append-1">
 		<div id="checkoutContentPanel" class="clearfix">
+
 			<div class="headline"><spring:theme code="checkout.multi.paymentMethod.addPaymentDetails.paymentCard"/></div>
 			<div class="required right"><spring:theme code="form.required"/></div>
 			<div class="description"><spring:theme code="checkout.multi.paymentMethod.addPaymentDetails.enterYourCardDetails"/></div>
+
+
 
 
 			<form:form method="post" commandName="paymentDetailsForm" class="create_update_payment_form">

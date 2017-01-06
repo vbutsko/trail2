@@ -15,6 +15,7 @@ import de.hybris.platform.payment.commands.result.AuthorizationResult;
 import de.hybris.platform.payment.dto.BillingInfo;
 import de.hybris.platform.payment.dto.CardInfo;
 import de.hybris.platform.payment.dto.NewSubscription;
+import de.hybris.platform.payment.dto.TransactionStatus;
 import de.hybris.platform.payment.enums.PaymentTransactionType;
 import de.hybris.platform.payment.model.PaymentTransactionEntryModel;
 import de.hybris.platform.payment.model.PaymentTransactionModel;
@@ -75,6 +76,7 @@ public class LoyaltySystemPaymentServiceImpl implements PaymentService {
         }
         entry.setTime(new Date());
         entry.setPaymentTransaction(transaction);
+        entry.setTransactionStatus(TransactionStatus.ACCEPTED.name());
         entry.setCode(newEntryCode);
         if(subscriptionID != null) {
             entry.setSubscriptionID(subscriptionID);
@@ -207,8 +209,8 @@ public class LoyaltySystemPaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public String getNewPaymentTransactionEntryCode(PaymentTransactionModel paymentTransactionModel, PaymentTransactionType paymentTransactionType) {
-        throw new NotImplementedException();
+    public String getNewPaymentTransactionEntryCode(PaymentTransactionModel transaction, PaymentTransactionType paymentTransactionType) {
+        return transaction.getEntries() == null?transaction.getCode() + "-" + paymentTransactionType.getCode() + "-1":transaction.getCode() + "-" + paymentTransactionType.getCode() + "-" + (transaction.getEntries().size() + 1);
     }
 
     public void setLoyaltyPointsPaymentService(LoyaltyPointsPaymentService loyaltyPointsPaymentService) {

@@ -22,7 +22,7 @@
 		<requires-extension name="acceleratorstorefrontcommons"/>
 		<requires-extension name="merchandisefacades"/>
 		<requires-extension name="merchandisecommerceservices"/>
-		
+		<requires-extension name="merchandiseloyaltysystem"/>
 
 		<webmodule jspcompile="false" webroot="/store"/>
 			

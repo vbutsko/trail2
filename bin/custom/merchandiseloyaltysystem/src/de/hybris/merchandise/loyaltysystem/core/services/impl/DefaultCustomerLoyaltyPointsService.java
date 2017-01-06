@@ -9,6 +9,7 @@ import de.hybris.platform.core.model.user.CustomerModel;
 import de.hybris.platform.servicelayer.model.ModelService;
 import org.springframework.beans.factory.annotation.Required;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -50,6 +51,10 @@ public class DefaultCustomerLoyaltyPointsService implements CustomerLoyaltyPoint
             customerModel.setLoyaltyPoints(Double.valueOf(0.0));
         }
         customerModel.setLoyaltyPoints(customerModel.getLoyaltyPoints() + customerExtraLoyaltyPoints);
+    }
+
+    public boolean checkLoyaltyPointsForOrder(CustomerModel customerModel, double amount){
+        return customerModel.getLoyaltyPoints() >= amount;
     }
 
     @Required

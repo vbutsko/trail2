@@ -37,13 +37,12 @@ public class LoyaltyPointsCommercePaymentAuthorizationStrategy implements Commer
         try
         {
             final PaymentInfoModel paymentInfo = cartModel.getPaymentInfo();
-            if (paymentInfo instanceof LoyaltyPointsPaymentInfoModel
-                    && StringUtils.isNotBlank(((LoyaltyPointsPaymentInfoModel) paymentInfo).getSubscriptionId()))
+            if (paymentInfo instanceof LoyaltyPointsPaymentInfoModel)
             {
                 final Currency currency = getI18nService().getBestMatchingJavaCurrency(cartModel.getCurrency().getIsocode());
                 final String merchantTransactionCode = getGenerateMerchantTransactionCodeStrategy().generateCode(cartModel);
                 transactionEntryModel = getPaymentService().authorize(merchantTransactionCode, amount, currency,
-                        cartModel.getDeliveryAddress(), ((LoyaltyPointsPaymentInfoModel) paymentInfo).getSubscriptionId());
+                        cartModel.getDeliveryAddress(), "");  //TODO: check
                 if (transactionEntryModel != null)
                 {
                     final PaymentTransactionModel paymentTransaction = transactionEntryModel.getPaymentTransaction();
@@ -51,8 +50,8 @@ public class LoyaltyPointsCommercePaymentAuthorizationStrategy implements Commer
                     if (TransactionStatus.ACCEPTED.name().equals(transactionEntryModel.getTransactionStatus())
                             || TransactionStatus.REVIEW.name().equals(transactionEntryModel.getTransactionStatus()))
                     {
+                        cartModel.setIsPaidByLoyaltyPoints(true);
                         paymentTransaction.setOrder(cartModel);
-                        ((OrderModel)paymentTransaction.getOrder()).setIsPaidByLoyaltyPoints(true);
                         paymentTransaction.setInfo(paymentInfo);
                         getModelService().saveAll(cartModel, paymentTransaction);
                     }

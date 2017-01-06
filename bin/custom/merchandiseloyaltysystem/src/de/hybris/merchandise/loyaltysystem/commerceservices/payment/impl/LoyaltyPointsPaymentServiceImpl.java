@@ -1,6 +1,7 @@
 package de.hybris.merchandise.loyaltysystem.commerceservices.payment.impl;
 
 import de.hybris.merchandise.loyaltysystem.commerceservices.payment.LoyaltyPointsPaymentService;
+import de.hybris.merchandise.loyaltysystem.core.services.CustomerLoyaltyPointsService;
 import de.hybris.platform.core.model.order.OrderModel;
 import de.hybris.platform.core.model.user.CustomerModel;
 import de.hybris.platform.payment.AdapterException;
@@ -16,6 +17,8 @@ public class LoyaltyPointsPaymentServiceImpl implements LoyaltyPointsPaymentServ
 
     @Resource
     private ModelService modelService;
+    @Resource
+    private CustomerLoyaltyPointsService defaultCustomerLoyaltyPointsService;
 
     public void setModelService(ModelService modelService) {
         this.modelService = modelService;
@@ -23,7 +26,7 @@ public class LoyaltyPointsPaymentServiceImpl implements LoyaltyPointsPaymentServ
 
     @Override
     public void payForOrderByLoyaltyPoints(CustomerModel customerModel, BigDecimal amount) {
-        if(checkLoyaltyPointsForOrder(customerModel, amount)){
+        if(defaultCustomerLoyaltyPointsService.checkLoyaltyPointsForOrder(customerModel, amount.doubleValue())){
                 if(payByLoyaltyPoints(customerModel, amount)) {
                 modelService.save(customerModel);
             }
@@ -31,11 +34,6 @@ public class LoyaltyPointsPaymentServiceImpl implements LoyaltyPointsPaymentServ
             throw new AdapterException("Don't have enough Loyalty Points to pay for Order");
         }
     }
-
-    private boolean checkLoyaltyPointsForOrder(CustomerModel customerModel, BigDecimal amount){
-        return customerModel.getLoyaltyPoints() >= amount.doubleValue();
-    }
-
     private boolean payByLoyaltyPoints(CustomerModel customerModel, BigDecimal amount){
         customerModel.setLoyaltyPoints(customerModel.getLoyaltyPoints() - amount.doubleValue());
         if(customerModel.getLoyaltyPoints() < 0.){
@@ -43,6 +41,10 @@ public class LoyaltyPointsPaymentServiceImpl implements LoyaltyPointsPaymentServ
         }else{
             return true;
         }
+    }
+
+    public void setLpService(CustomerLoyaltyPointsService lpService){
+        this.defaultCustomerLoyaltyPointsService = lpService;
     }
 
 }

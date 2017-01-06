@@ -58,7 +58,7 @@ public class GeneratedTypeInitializer extends AbstractTypeInitializer
 	
 		createItemType(
 			"LoyaltyPointsPaymentInfo",
-			"CreditCardPaymentInfo",
+			"PaymentInfo",
 			de.hybris.merchandise.loyaltysystem.jalo.LoyaltyPointsPaymentInfo.class,
 			null,
 			false,
@@ -94,7 +94,7 @@ public class GeneratedTypeInitializer extends AbstractTypeInitializer
 			
 				single_createattr_LoyaltyPointsConfiguration_value();
 			
-				single_createattr_Order_isPaidByLoyaltyPoints();
+				single_createattr_AbstractOrder_isPaidByLoyaltyPoints();
 			
 
 	}
@@ -185,13 +185,13 @@ public class GeneratedTypeInitializer extends AbstractTypeInitializer
 			
 	}
 	
-	public void single_createattr_Order_isPaidByLoyaltyPoints() throws JaloBusinessException
+	public void single_createattr_AbstractOrder_isPaidByLoyaltyPoints() throws JaloBusinessException
 	{
 		
 						Map sqlColumnDefinitions = null;
 					
 				createPropertyAttribute(
-					"Order", 
+					"AbstractOrder", 
 					"isPaidByLoyaltyPoints",  
 					null,
 					"java.lang.Boolean",
@@ -273,13 +273,13 @@ public class GeneratedTypeInitializer extends AbstractTypeInitializer
 				Map customPropsMap = new HashMap();
 				
 				changeMetaType(
-					"Order",
+					"AbstractOrder",
 					null,
 					customPropsMap
 				);
 				}
 			
-			single_setAttributeProperties_Order_isPaidByLoyaltyPoints();
+			single_setAttributeProperties_AbstractOrder_isPaidByLoyaltyPoints();
 		
 				setDefaultProperties(
 					"LoyaltyPointsConfigurationType",
@@ -402,7 +402,7 @@ public class GeneratedTypeInitializer extends AbstractTypeInitializer
 							);
 						}
 					
-						public void single_setAttributeProperties_Order_isPaidByLoyaltyPoints() throws JaloBusinessException
+						public void single_setAttributeProperties_AbstractOrder_isPaidByLoyaltyPoints() throws JaloBusinessException
 						{
 							
 							
@@ -410,7 +410,7 @@ public class GeneratedTypeInitializer extends AbstractTypeInitializer
 							Map customPropsMap = new HashMap();
 							
 							setAttributeProperties(
-								"Order", 
+								"AbstractOrder", 
 								"isPaidByLoyaltyPoints",
 								false, 
 								java.lang.Boolean.FALSE,
