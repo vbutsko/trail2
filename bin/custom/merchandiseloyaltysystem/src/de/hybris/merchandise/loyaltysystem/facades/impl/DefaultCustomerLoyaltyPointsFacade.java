@@ -98,7 +98,8 @@ public class DefaultCustomerLoyaltyPointsFacade extends DefaultAcceleratorChecko
                 parameter.setPaymentProvider(getPaymentProvider());
                 final PaymentTransactionEntryModel paymentTransactionEntryModel = getCommerceCheckoutService().authorizePayment(
                         parameter);
-
+                cartModel.setIsPaidByLoyaltyPoints(true);
+                getCartService().setSessionCart(cartModel);
                 return paymentTransactionEntryModel != null
                         && (TransactionStatus.ACCEPTED.name().equals(paymentTransactionEntryModel.getTransactionStatus()) || TransactionStatus.REVIEW
                         .name().equals(paymentTransactionEntryModel.getTransactionStatus()));
